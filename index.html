@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AWS PRM Deadline: Measure Attribution & Keep Funding | SaaSNova × Workspan</title>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-185EJ40PT4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-185EJ40PT4'); 
+</script>
+
+<meta name="google-site-verification" content="google960def4cf195e9cf" />
+<meta name="google-site-verification" content="LwLN-rte3Gr-8_iFc-B2XCoqCsiEHGN2MoECtAgx2C8" />
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="logo-favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="logo-favicon-16x16.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #008BF8;
+  --pink: #FA0F9C;
+  --orange: #F19953;
+  --purple: #8146FF;
+  --violet: #8B5CF6;
+  --white: #FFFFFF;
+  --text: #0A0F1E;
+  --muted: #4A5568;
+  --light: #F8FAFC;
+  --alt-bg: #F4F7FB;
+  --border: #E2E8F0;
+  --font: 'Inter', -apple-system, sans-serif;
+  --dark-bg: #0A0F1F;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* DYNAMIC MORPHING NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 6%; height: 90px; width: 100%; max-width: none;
+  background: transparent;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(0);
+}
+
+/* NAV SCROLLED STATE */
+.nav.scrolled {
+  top: 16px; left: 50%; transform: translateX(-50%);
+  width: 96%; max-width: 1200px; height: auto; min-height: 76px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(16px);
+  border-radius: 100px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+  padding: 10px 16px 10px 32px;
+}
+
+.nav-logo-wrap { display: flex; align-items: center; gap: 24px; flex-wrap: nowrap; }
+.nav-logo { display: flex; align-items: center; text-decoration: none; font-weight: 900; font-size: 1.25rem; letter-spacing: -0.04em; }
+.nav-logo.saasnova { color: var(--blue); }
+.nav-logo.workspan { color: var(--violet); }
+
+/* OPTICALLY BALANCED LOGOS */
+.nav-logo.saasnova img { height: 34px; max-height: 34px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
+.nav-logo.workspan img { height: 60px; max-height: 60px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
+
+.nav.scrolled .nav-logo.saasnova img { height: 28px; max-height: 28px; }
+.nav.scrolled .nav-logo.workspan img { height: 48px; max-height: 48px; }
+.nav-divider { width: 1px; height: 24px; background: var(--border); transition: all 0.3s; }
+
+/* NAV BADGE */
+.nav-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px; border-radius: 100px;
+  background: var(--light); color: var(--text);
+  font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  border: 1px solid var(--border); transition: all 0.3s;
+}
+.nav-badge .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); animation: pulse 2s infinite; }
+
+.nav-ctas { display: flex; gap: 12px; align-items: center; }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 24px; border-radius: 100px; 
+  font-family: var(--font); font-size: 0.95rem; font-weight: 800;
+  text-decoration: none; cursor: pointer; border: none;
+  transition: all 0.2s ease; letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.btn-gradient {
+  background: linear-gradient(135deg, var(--pink) 0%, var(--violet) 100%); color: var(--white);
+  box-shadow: 0 4px 14px rgba(139,92,246,0.3);
+}
+.btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139,92,246,0.4); opacity: 0.95; }
+.btn-xl { padding: 18px 48px; font-size: 1.15rem; box-shadow: 0 8px 24px rgba(139,92,246,0.4); }
+
+.nav-ctas .btn { padding: 14px 32px; font-size: 0.95rem; }
+
+/* LAYOUT UTILS */
+section { padding: 56px 6%; } 
+.wrap { max-width: 1140px; margin: 0 auto; }
+.center { text-align: center; }
+.text-left { text-align: left !important; }
+
+/* SECTION LABELS */
+.eyebrow {
+  display: inline-block;
+  font-size: 0.75rem; font-weight: 800; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--muted);
+  background: var(--border);
+  padding: 6px 14px; border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900;
+  line-height: 1.1; letter-spacing: -0.04em;
+  color: var(--text); margin-bottom: 12px;
+}
+.section-sub {
+  font-size: 1.1rem; color: var(--muted); max-width: 800px;
+  margin: 0 auto 32px; line-height: 1.6; font-weight: 500;
+}
+
+/* HERO */
+.hero {
+  min-height: 85vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 160px 6% 80px;
+  background-color: #FAFAFC;
+  position: relative; overflow: hidden;
+}
+
+.hero-grid-bg {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}
+.hero-glow-core {
+  position: absolute; width: 800px; height: 800px;
+  background: radial-gradient(circle at center, rgba(139,92,246,0.12) 0%, transparent 60%);
+  top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0; filter: blur(40px);
+}
+@keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+
+.hero .wrap { position: relative; z-index: 10; }
+
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 6px 20px; border-radius: 100px;
+  background: var(--white); color: var(--text);
+  font-size: 0.75rem; font-weight: 800; letter-spacing: 0.05em;
+  margin-bottom: 24px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+.hero-pill .divider { color: var(--muted); font-weight: 300; margin: 0 2px; }
+.hero-pill .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); animation: pulse 2s infinite; }
+
+.hero-headline {
+  font-size: clamp(2rem, 3.6vw, 3.6rem); 
+  font-weight: 900; line-height: 1.05;
+  letter-spacing: -0.04em; max-width: 1200px;
+  margin: 0 auto 20px; color: var(--text);
+}
+.hero-headline span.gradient-highlight {
+  background: linear-gradient(135deg, var(--blue), var(--pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-sub {
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem); color: var(--muted);
+  max-width: 800px; margin: 0 auto 16px; font-weight: 500; line-height: 1.6;
+}
+.hero-event-details {
+  display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+  margin: 24px 0 48px; color: var(--text); font-weight: 800; font-size: 0.95rem;
+}
+.hero-event-details span { display: flex; align-items: center; gap: 8px; background: var(--white); padding: 10px 20px; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+.hero-event-details svg { color: var(--blue); }
+
+.hero-actions { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.micro-proof { font-size: 0.8rem; font-weight: 700; color: var(--muted); margin-top: 16px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+/* STRUCTURAL SPEC GRIDS */
+.light-bg { background: var(--light); }
+.alt-bg { background-color: var(--alt-bg); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+
+/* SIGNALS (Numbers) */
+.stat-signal {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--blue);
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: left;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+.stat-signal:nth-child(2) { border-top-color: var(--orange); }
+.stat-signal:nth-child(3) { border-top-color: var(--pink); }
+
+.stat-number { font-size: 4.5rem; font-weight: 900; line-height: 1; margin-bottom: 12px; letter-spacing: -0.04em; color: var(--text); }
+.spec-title { font-size: 1.05rem; font-weight: 900; margin-bottom: 8px; color: var(--text); letter-spacing: -0.02em; line-height: 1.3; }
+.spec-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
+
+/* SPEC CARDS (Agenda & Who) */
+.spec-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: left;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.spec-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  border-color: var(--blue);
+}
+.spec-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px; 
+}
+.spec-icon.purple { background: rgba(129, 70, 255, 0.08); color: var(--purple); }
+.spec-icon.blue { background: rgba(0,139,248,0.08); color: var(--blue); }
+.spec-icon.orange { background: rgba(241,153,83,0.1); color: var(--orange); }
+.spec-icon.pink { background: rgba(250,15,156,0.1); color: var(--pink); }
+
+/* ICP / SPEAKERS */
+.speaker-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 900px; margin: 0 auto; }
+.speaker-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; padding: 40px 32px; text-align: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+.speaker-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid var(--white); margin: 0 auto 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+
+.metric-badge {
+  display: inline-block; background: rgba(0,139,248,0.1); color: var(--blue);
+  font-weight: 800; font-size: 0.95rem; padding: 6px 12px; border-radius: 6px;
+  margin-bottom: 16px;
+}
+.metric-badge.violet { background: rgba(139,92,246,0.1); color: var(--violet); }
+
+/* CTA */
+.cta-gradient {
+  background: linear-gradient(135deg, #0052FF 0%, #8B5CF6 50%, #FA0F9C 100%);
+  color: var(--white); text-align: center; padding: 80px 6%;
+}
+.cta-gradient .section-title { color: var(--white); margin-bottom: 16px; font-size: clamp(2rem, 4vw, 2.8rem); }
+.cta-gradient .section-sub { color: rgba(255,255,255,0.95); margin-bottom: 32px; font-weight: 600; font-size: 1.15rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+/* COLLAPSIBLE FAQ */
+.faq-wrap { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; padding-top: 16px;}
+details { 
+  background: var(--white); border: 1px solid var(--border); border-radius: 12px; 
+  padding: 20px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+details:hover { border-color: var(--blue); }
+summary { 
+  font-weight: 800; font-size: 1rem; color: var(--text); list-style: none; 
+  display: flex; justify-content: space-between; align-items: center; 
+}
+summary::-webkit-details-marker { display: none; }
+summary::after { content: '+'; font-size: 1.25rem; color: var(--blue); font-weight: 400; }
+details[open] summary { border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 12px; }
+details[open] summary::after { content: '−'; }
+.faq-a { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
+
+/* MODAL / FORM */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 1000;
+  background: rgba(10, 15, 31, 0.9); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; transition: all 0.3s ease; padding: 20px;
+}
+.modal-overlay.open { opacity: 1; visibility: visible; }
+.modal-content {
+  background: var(--white); border-radius: 24px; width: 100%; max-width: 900px;
+  padding: 48px; position: relative; transform: translateY(20px) scale(0.98);
+  transition: all 0.3s ease; max-height: 90vh; overflow-y: auto; text-align: left;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.2);
+}
+.modal-overlay.open .modal-content { transform: translateY(0) scale(1); }
+.modal-close {
+  position: absolute; top: 20px; right: 20px; background: var(--light);
+  border: none; width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--muted); transition: all 0.2s; z-index: 10;
+}
+.modal-close:hover { background: var(--border); color: var(--text); }
+
+.modal-layout {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+}
+.form-group { margin-bottom: 20px; }
+.form-label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text); margin-bottom: 8px; letter-spacing: 0.05em; }
+.form-control, .form-select {
+  width: 100%; padding: 12px 16px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--white);
+  font-family: var(--font); font-size: 0.95rem; color: var(--text);
+  transition: all 0.2s;
+}
+.form-control:focus, .form-select:focus { outline: none; border-color: var(--violet); box-shadow: 0 0 0 4px rgba(139,92,246,0.1); }
+.form-select { appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%234A5568%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 16px top 50%; background-size: 12px auto; }
+.form-error { display: none; background: #FFF5F5; color: #C53030; padding: 12px 16px; border-radius: 10px; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; border: 1px solid #FEB2B2; }
+
+/* FOOTER */
+footer { background: var(--white); padding: 80px 6% 40px; text-align: left; }
+.footer-grid { display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 40px; max-width: 1100px; margin: 0 auto; align-items: start; }
+.footer-bottom { 
+  margin-top: 60px; border-top: 1px solid var(--border); padding-top: 24px; 
+  display: flex; flex-direction: column; align-items: center; gap: 12px; 
+}
+.footer-legal-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+.footer-legal-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+.footer-legal-links a:hover { color: var(--blue); }
+.footer-copy { color: var(--muted); font-size: 0.85rem; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid-3, .grid-2, .speaker-grid, .footer-grid { grid-template-columns: 1fr; }
+  .hero-event-details { flex-direction: column; gap: 12px; align-items: center; }
+}
+
+@media (max-width: 768px) {
+  .modal-layout { grid-template-columns: 1fr; gap: 40px; }
+  .modal-content { padding: 32px 24px; }
+}
+
+@media (max-width: 640px) {
+  section { padding: 48px 5%; } 
+  .nav { justify-content: center; padding: 0 5%; }
+  .nav.scrolled { 
+    width: 92%; padding: 12px 20px; border-radius: 40px; 
+    min-height: 60px; justify-content: center; top: 12px;
+  }
+  .nav-logo-wrap { gap: 12px; justify-content: center; width: 100%; }
+  .nav-ctas { display: none !important; } 
+  .nav-badge { display: none !important; }
+  .hero-actions { width: 100%; }
+  .hero-actions .btn { width: 100%; }
+  .section-title { font-size: clamp(1.8rem, 8vw, 2.2rem); }
+}
+</style>
+</head>
+<body>
+
+<!-- DYNAMIC MORPHING NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-logo-wrap">
+    <a href="#" class="nav-logo saasnova">
+      <img src="saasnova-logo.png" alt="SaaSNova" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <span style="display:none;">SaaSNova</span>
+    </a>
+    <div class="nav-divider"></div>
+    <a href="#" class="nav-logo workspan">
+      <img src="workspan-logo.png" alt="Workspan" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <span style="display:none;">Workspan</span>
+    </a>
+    <div class="nav-badge"><span class="live-dot"></span> Free Live Webinar</div>
+  </div>
+  <div class="nav-ctas">
+    <button onclick="openModal()" class="btn btn-gradient">Register Now &rarr;</button>
+  </div>
+</nav>
+
+<!-- HERO (LIGHT MODE) -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow-core"></div>
+  <div class="wrap center">
+    
+    <div class="hero-pill">
+      <span class="live-dot"></span>
+      <span class="highlight">Free Live Webinar</span> 
+      <span class="divider">|</span>
+      <span>SaaSNova × Workspan</span>
+    </div>
+
+    <h1 class="hero-headline">
+      If AWS cannot track your partner-sourced revenue,<br>
+      <span class="gradient-highlight">you lose funding priority.</span>
+    </h1>
+    <p class="hero-sub">
+      Most ISVs fail AWS funding cycles due to missing attribution. Fix your PRM visibility and co-sell tracking frameworks before the July 31st migration deadline.
+    </p>
+    
+    <div class="hero-event-details">
+      <span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        May 20, 2026
+      </span>
+      <span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        10:00 AM PST (NA) • 9:00 PM PST (APJ)
+      </span>
+      <span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        English
+      </span>
+    </div>
+
+    <div class="hero-actions">
+      <button onclick="openModal()" class="btn btn-gradient btn-xl">Register Now &rarr;</button>
+    </div>
+  </div>
+</section>
+
+<!-- WHY NOW (Context) -->
+<section class="border-y border-border" style="background-color: var(--white);">
+  <div class="wrap center">
+    <div class="eyebrow" style="color:var(--blue); border-color:rgba(0,139,248,0.25); background:rgba(0,139,248,0.1);">Why Now</div>
+    <h2 class="section-title">Why Join This Session</h2>
+    <p class="section-sub">
+      PRM ensures your co-sell impact is properly attributed, unlocking vital AWS funding and improving visibility. The new AWS Partner Central unifies Marketplace and co-sell workflows, requiring partners to leverage automation to manage opportunities and avoid deal delays.
+    </p>
+    
+    <div class="grid-3 text-left" style="margin-top: 48px;">
+      <div class="stat-signal">
+        <div class="stat-number text-gradient">$7.13</div>
+        <h3 class="spec-title">Top Performers</h3>
+        <p class="spec-desc">Top AWS partners earn $7.13 in services revenue for every $1 of AWS sold. This multiplier requires flawless co-sell execution.</p>
+      </div>
+      <div class="stat-signal">
+        <div class="stat-number text-gradient-2">64%</div>
+        <h3 class="spec-title">Most Partners Stuck Here</h3>
+        <p class="spec-desc">Struggling with GTM integration and manual trackers, leaving Marketplace drastically underutilized against competitors.</p>
+      </div>
+      <div class="stat-signal">
+        <div class="stat-number" style="color: var(--text);">$0</div>
+        <h3 class="spec-title">Where You Are If Invisible</h3>
+        <p class="spec-desc">No attribution tracking means zero priority AWS funding, no dedicated co-sell support, and lost visibility in the ecosystem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE BLUEPRINT (Spec Cards) -->
+<section class="alt-bg">
+  <div class="wrap center">
+    <div class="eyebrow" style="color:var(--violet); border-color:rgba(139,92,246,0.25); background:rgba(139,92,246,0.1);">Execution Mechanics</div>
+    <h2 class="section-title">What Actually Gets Fixed</h2>
+    <p class="section-sub">We will break down the exact workflows and infrastructure required to capture more deals and accelerate your co-sell mechanics before the July 31st deadline.</p>
+    
+    <div class="grid-2 text-left" style="margin-top: 32px;">
+      <div class="spec-card">
+        <div class="spec-icon purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
+        <h3 class="spec-title">Migrate without losing attribution data (most teams do)</h3>
+        <p class="spec-desc">Get prescriptive guidance on successfully navigating the AWS Partner Central migration without dropping existing deals or breaking your current tracking workflows.</p>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div>
+        <h3 class="spec-title">Architect AWS accounts for maximum co-sell credit</h3>
+        <p class="spec-desc">Learn the vital importance of selecting and connecting the correct AWS Account architectures to link natively with Partner Central for immediate funding visibility.</p>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon pink"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+        <h3 class="spec-title">Exact steps AWS uses to validate partner visibility</h3>
+        <p class="spec-desc">Discover the precise, non-negotiable steps to achieve full compliance for Partner Revenue Measurement and permanently lock in your impact attribution.</p>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div>
+        <h3 class="spec-title">Live teardown of specific PRM integration blockers</h3>
+        <p class="spec-desc">Bring your toughest operational and transition blockers to our live teardown session handled directly by our seasoned AWS Partnership experts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TARGET AUDIENCE -->
+<section class="border-y border-border" style="background-color: var(--white);">
+  <div class="wrap center">
+    <div class="eyebrow" style="color:var(--orange); border-color:rgba(241,153,83,0.25); background:rgba(241,153,83,0.1);">Who This Is For</div>
+    <h2 class="section-title">Who Should Attend</h2>
+    <p class="section-sub">Built specifically for leaders ready to safeguard their funding and turn their AWS partnership into a scalable, high-performing revenue system.</p>
+    
+    <div class="grid-3 text-left" style="margin-top: 32px;">
+      <div class="spec-card">
+        <div class="spec-icon purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div>
+        <h3 class="spec-title">Product & Engineering Leaders</h3>
+        <p class="spec-desc">Implement PRM without added complexity.</p>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
+        <h3 class="spec-title">GTM & Alliance Leaders</h3>
+        <p class="spec-desc">Unlock co-sell visibility and funding.</p>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon pink"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div>
+        <h3 class="spec-title">Founders & Executives</h3>
+        <p class="spec-desc">Maximize your partnership ROI with confidence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="alt-bg border-b border-border">
+  <div class="wrap center">
+    <div class="eyebrow" style="color:var(--blue); border-color:rgba(0,139,248,0.25); background:rgba(0,139,248,0.1);">The Experts</div>
+    <h2 class="section-title">Meet Your Speakers</h2>
+    <p class="section-sub" style="margin-bottom: 48px;">This operational session is led by practitioners who build, scale, and manage top-tier AWS partnerships every single day.</p>
+    
+    <div class="speaker-grid">
+      <div class="speaker-card">
+        <img src="jen-dp.jpg" alt="Jen Dawson" class="speaker-img" onerror="this.outerHTML='<div class=\'speaker-img\' style=\'display:flex;align-items:center;justify-content:center;background:#F8FAFC;font-weight:900;font-size:2rem;color:#4A5568;\'>JD</div>'">
+        <h3 class="spec-title" style="margin-bottom: 4px; font-size: 1.4rem;">Jen Dawson</h3>
+        <p style="color: var(--muted); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 16px; letter-spacing: 0.05em;">Founder, SaaSNova</p>
+        <span class="metric-badge">Built attribution systems for 100+ ISVs.</span>
+        <p class="spec-desc">Direct experience engineering AWS co-sell pipelines and partner activation frameworks that connect consumption to measurable pipeline growth.</p>
+      </div>
+      <div class="speaker-card">
+        <img src="amit-dp.jpeg" alt="Amit Saha" class="speaker-img" onerror="this.outerHTML='<div class=\'speaker-img\' style=\'display:flex;align-items:center;justify-content:center;background:#F8FAFC;font-weight:900;font-size:2rem;color:#4A5568;\'>AS</div>'">
+        <h3 class="spec-title" style="margin-bottom: 4px; font-size: 1.4rem;">Amit Saha</h3>
+        <p style="color: var(--muted); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 16px; letter-spacing: 0.05em;">President, Workspan</p>
+        <span class="metric-badge violet">Scaled operations processing $1B+ in pipeline.</span>
+        <p class="spec-desc">Architected the enterprise infrastructure currently helping top-tier ISVs track, measure, and maximize their marketplace revenue potential.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FINAL CTA -->
+<section class="cta-gradient">
+  <div class="wrap center">
+    <h2 class="section-title">Fix your AWS visibility before the deadline closes.</h2>
+    <p class="section-sub">After July 31, visibility resets for non-compliant partners. Miss this &rarr; lose co-sell priority for the next cycle.</p>
+    <div style="display:flex; justify-content:center; flex-direction: column; align-items: center; gap: 16px;">
+      <button onclick="openModal()" class="btn" style="background:var(--white); color:var(--violet); padding:18px 48px; font-size:1.15rem; box-shadow: 0 12px 30px rgba(0,0,0,0.15);">Register Now</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid text-left">
+      <!-- SaaSNova Col -->
+      <div>
+        <a href="https://www.saasnova.ai" target="_blank" style="display: block; margin-bottom: 16px;">
+          <img src="saasnova-logo.png" alt="SaaSNova" height="32" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.2rem; color:var(--blue); letter-spacing:-0.04em;\'>SaaSNova</span>'">
+        </a>
+        <p class="spec-desc" style="color: var(--text); font-weight: 500;">Strategic GTM leadership and pipeline acceleration for cloud-native ISVs.</p>
+        <a href="mailto:marketing@saasnova.ai" style="display: inline-block; margin-top: 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); text-decoration: none;">marketing@saasnova.ai</a>
+      </div>
+
+      <!-- Workspan Col -->
+      <div>
+        <a href="https://workspan.com" target="_blank" style="display: block; margin-bottom: 16px;">
+          <img src="workspan-logo.png" alt="Workspan" height="32" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.2rem; color:var(--violet); letter-spacing:-0.04em;\'>Workspan</span>'">
+        </a>
+        <p class="spec-desc" style="color: var(--text); font-weight: 500;">Co-sell infrastructure and CRM integration for multi-cloud marketplaces.</p>
+        <a href="mailto:marketing@workspan.com" style="display: inline-block; margin-top: 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); text-decoration: none;">marketing@workspan.com</a>
+      </div>
+      
+      <!-- Quick Links Col -->
+      <div>
+        <h4 style="font-weight: 800; color: var(--text); margin-bottom: 16px; font-size: 1.05rem;">Quick Links</h4>
+        <a href="https://www.saasnova.ai" target="_blank" style="display: block; color: var(--muted); margin-bottom: 12px; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--blue)'" onmouseout="this.style.color='var(--muted)'">SaaSNova Website</a>
+        <a href="https://workspan.com" target="_blank" style="display: block; color: var(--muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--blue)'" onmouseout="this.style.color='var(--muted)'">Workspan Website</a>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="footer-legal-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 SaaSNova &times; Workspan. All rights reserved.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- REGISTRATION MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal-content" id="modalContent">
+    <button class="modal-close" onclick="closeModal()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+
+    <div id="modalContentInner" class="modal-layout">
+      <!-- Event Information Side -->
+      <div class="modal-info">
+        <h4 style="font-weight: 900; font-size: 1.15rem; color: var(--text); margin-bottom: 12px;">Event Details</h4>
+        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 24px; line-height: 1.6;">Join this live session to learn about the latest updates in AWS Partner Central and how Partner Revenue Measurement (PRM) helps you gain attribution, unlock partner funding, and accelerate co-sell opportunities. With the July 31 deadline fast approaching, discover how to ensure a smooth transition and simplify PRM setup through automation.</p>
+
+        <h4 style="font-weight: 900; font-size: 1.15rem; color: var(--text); margin-bottom: 12px;">Agenda</h4>
+        <ul style="font-size: 0.9rem; color: var(--muted); margin-bottom: 24px; padding-left: 20px; line-height: 1.6;">
+          <li style="margin-bottom: 8px;">Prescriptive guidance on AWS Partner Central Migration</li>
+          <li style="margin-bottom: 8px;">Importance of selecting the right AWS Account to link with your Partner Central</li>
+          <li style="margin-bottom: 8px;">How to achieve compliance for Partner Revenue Measurement</li>
+          <li>Live Q&A session with AWS Partnership experts</li>
+        </ul>
+
+        <h4 style="font-weight: 900; font-size: 1.15rem; color: var(--text); margin-bottom: 12px;">Who Should Attend</h4>
+        <ul style="font-size: 0.9rem; color: var(--muted); padding-left: 20px; line-height: 1.6;">
+          <li style="margin-bottom: 8px;">AWS Alliance Managers</li>
+          <li style="margin-bottom: 8px;">AWS Technology Partners who do not want to lose access to funding</li>
+          <li>AWS Marketplace partners and ISVs planning to list their solutions</li>
+        </ul>
+      </div>
+
+      <!-- Registration Form Side -->
+      <div id="formView">
+        <div class="eyebrow" style="color:var(--violet); border-color:rgba(139,92,246,0.25); background:rgba(139,92,246,0.1); margin-bottom: 12px;">Free Live Webinar</div>
+        <h3 class="section-title" style="font-size: 1.8rem; margin-bottom: 8px;">Register Now</h3>
+        <p style="color: var(--muted); margin-bottom: 24px; font-size: 0.95rem;">Select your preferred session. Seats are limited.</p>
+
+        <div class="form-error" id="formError">Please fill out all required fields.</div>
+
+        <form onsubmit="handleSubmit(event)">
+          <!-- SESSION DROPDOWN -->
+          <div class="form-group">
+            <label class="form-label">Select Session <span style="color:var(--pink);">*</span></label>
+            <select id="sessionTime" class="form-select">
+              <option value="" disabled selected>Choose your timezone...</option>
+              <option value="na">May 20 • 10:00 AM PST (North America / EMEA)</option>
+              <option value="apj">May 20 • 9:00 PM PST (APJ / IST)</option>
+            </select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">First Name <span style="color:var(--pink);">*</span></label>
+              <input type="text" id="firstName" class="form-control" placeholder="Jane">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name <span style="color:var(--pink);">*</span></label>
+              <input type="text" id="lastName" class="form-control" placeholder="Doe">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Work Email <span style="color:var(--pink);">*</span></label>
+            <input type="email" id="email" class="form-control" placeholder="jane@company.com">
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 24px;">
+            <label class="form-label">Company <span style="color:var(--pink);">*</span></label>
+            <input type="text" id="company" class="form-control" placeholder="Acme Corp">
+          </div>
+          
+          <button type="submit" class="btn btn-gradient" style="width: 100%; padding: 14px; font-size: 1rem;">Reserve My Seat</button>
+          <p style="text-align: center; font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-top: 16px;">No spam. Data is used exclusively for event communications.</p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Success View (Hidden initially) -->
+    <div id="successView" style="display: none; text-align: center; padding: 20px 0;">
+      <div style="width: 56px; height: 56px; background: rgba(72,187,120,0.15); color: #48BB78; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h3 class="section-title" style="font-size: 1.8rem; margin-bottom: 12px;">Registration Confirmed.</h3>
+      <p style="color: var(--muted); margin-bottom: 24px; font-size: 0.95rem; line-height: 1.6;">Check your inbox for calendar invites. We will send a reminder link 24 hours before we go live.</p>
+      <button onclick="closeModal()" class="btn" style="background: var(--light); color: var(--text); border: 1px solid var(--border); width: 100%; max-width: 300px; padding: 14px;">Close Window</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Dynamic Morphing Nav (Scroll Listener)
+const mainNav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    mainNav.classList.add('scrolled');
+  } else {
+    mainNav.classList.remove('scrolled');
+  }
+}, { passive: true });
+
+// Modal Logic
+function openModal() {
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  
+  // Reset
+  document.getElementById('modalContentInner').style.display = 'grid';
+  document.getElementById('successView').style.display = 'none';
+  document.getElementById('formError').style.display = 'none';
+  
+  // Trigger responsive check for modal display
+  if (window.innerWidth <= 768) {
+    document.getElementById('modalContentInner').style.display = 'block';
+  }
+}
+
+window.addEventListener('resize', () => {
+  const modalInner = document.getElementById('modalContentInner');
+  if(modalInner.style.display !== 'none') {
+    if(window.innerWidth <= 768) {
+      modalInner.style.display = 'block';
+    } else {
+      modalInner.style.display = 'grid';
+    }
+  }
+});
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const errorBox = document.getElementById('formError');
+  errorBox.style.display = 'none';
+
+  const session = document.getElementById('sessionTime').value;
+  const fn = document.getElementById('firstName').value.trim();
+  const ln = document.getElementById('lastName').value.trim();
+  const em = document.getElementById('email').value.trim();
+  const co = document.getElementById('company').value.trim();
+
+  if (!session || !fn || !ln || !em || !co) {
+    errorBox.textContent = 'All fields, including session selection, are required.';
+    errorBox.style.display = 'block';
+    return;
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) {
+    errorBox.textContent = 'Please provide a valid work email address.';
+    errorBox.style.display = 'block';
+    return;
+  }
+
+  // Simulate success
+  document.getElementById('modalContentInner').style.display = 'none';
+  document.getElementById('successView').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
