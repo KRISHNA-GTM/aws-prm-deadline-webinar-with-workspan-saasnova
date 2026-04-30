@@ -23,7 +23,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
   --blue: #008BF8;
@@ -35,15 +35,13 @@
   --text: #0A0F1E;
   --muted: #4A5568;
   --light: #F8FAFC;
-  --alt-bg: #F4F7FB;
+  --alt-bg: #FAFAFC;
   --border: #E2E8F0;
   --font: 'Inter', -apple-system, sans-serif;
   
   --dark-bg: #0B1120;
   --dark-surface: #131B2F;
   --dark-border: #1E293B;
-  
-  --banner-height: 56px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -57,82 +55,63 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* URGENCY BANNER TICKER (Pure CSS) */
-.urgency-banner {
-  position: relative; z-index: 300;
-  height: var(--banner-height);
-  background: #E11D48;
-  color: var(--white);
-  display: flex; align-items: center;
-  overflow: hidden;
-  white-space: nowrap;
-  font-size: 0.9rem; font-weight: 700; letter-spacing: 0.08em;
-  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
-}
-.ticker-track {
-  display: flex;
-  width: max-content;
-  animation: ticker-scroll 70s linear infinite;
-}
-.ticker-track:hover {
-  animation-play-state: paused;
-}
-.ticker-content {
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  padding-right: 48px;
-}
-.ticker-item {
-  display: inline-flex;
-  align-items: center;
-}
-.ticker-sep {
-  margin: 0 32px;
-  opacity: 0.5;
-  font-weight: 400;
-}
-@keyframes ticker-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+/* -------------------------------------
+   HEADER & NAVIGATION 
+-------------------------------------- */
+.header-container {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 300;
 }
 
-/* DYNAMIC MORPHING NAV */
+/* URGENCY BANNER (Red BG, Yellow Highlight) */
+.urgency-banner {
+  background: #E11D48;
+  color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  padding: 12px 20px; text-align: center;
+  font-size: 0.95rem; font-weight: 500; letter-spacing: 0.02em;
+}
+.urgency-banner .text-yellow {
+  color: #FDE047; font-weight: 800; margin-right: 6px;
+}
+
+/* BASE NAVIGATION (Always visible on load) */
 .nav {
-  position: absolute; top: var(--banner-height); left: 0; right: 0; z-index: 200;
+  position: relative; 
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 6%; height: 110px; width: 100%; max-width: none;
+  padding: 0 6%; height: 80px; width: 100%; max-width: none;
   background: var(--white);
-  border-bottom: 1px solid var(--border);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  transform: translateY(0);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* NAV SCROLLED STATE (FLOATING PILL) */
 .nav.scrolled {
   position: fixed;
-  top: 20px; left: 50%; transform: translateX(-50%);
-  width: 98%; max-width: 1240px; height: auto; min-height: 84px;
+  top: 16px; left: 50%; transform: translateX(-50%);
+  width: 96%; max-width: 1200px; height: auto; min-height: 72px;
   background: rgba(255,255,255,0.95);
   backdrop-filter: blur(16px);
   border-radius: 100px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-  border: 1px solid rgba(255,255,255,0.8);
-  border-bottom: 1px solid rgba(255,255,255,0.8);
-  padding: 10px 16px 10px 36px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+  padding: 10px 16px 10px 32px;
+  z-index: 500;
 }
 
 .nav-logo-wrap { display: flex; align-items: center; gap: 24px; flex-wrap: nowrap; }
-.nav-logo { display: flex; align-items: center; text-decoration: none; gap: 10px; font-weight: 900; font-size: 1.25rem; letter-spacing: -0.04em; }
-.nav-logo.saasnova { color: var(--blue); }
-.nav-logo.workspan { color: var(--violet); }
+.nav-logo { display: flex; align-items: center; text-decoration: none; font-weight: 900; font-size: 1.25rem; letter-spacing: -0.04em; }
 
-/* LOGO SIZING SCALES (Increased 2x) */
-.nav-logo img { height: 80px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
-.nav.scrolled .nav-logo img { height: 50px; }
+/* OPTICALLY BALANCED LOGOS (1x Scale) */
+.nav-logo.saasnova img { height: 40px; max-height: 40px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
+.nav-logo.workspan img { height: 48px; max-height: 48px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
 
-.nav-divider { width: 1px; height: 48px; background: var(--border); transition: all 0.3s; }
-.nav.scrolled .nav-divider { height: 32px; }
+.nav.scrolled .nav-logo.saasnova img { height: 32px; max-height: 32px; }
+.nav.scrolled .nav-logo.workspan img { height: 38px; max-height: 38px; }
+
+.nav-divider { width: 1px; height: 32px; background: var(--border); transition: all 0.3s; }
+.nav.scrolled .nav-divider { height: 24px; }
 
 /* NAV BADGE */
 .nav-badge {
@@ -150,10 +129,10 @@ body {
 /* BUTTONS */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 14px 28px; border-radius: 100px; 
+  padding: 12px 24px; border-radius: 100px; 
   font-family: var(--font); font-size: 0.95rem; font-weight: 800;
   text-decoration: none; cursor: pointer; border: none;
-  transition: all 0.2s ease; letter-spacing: 0.01em;
+  transition: all 0.2s ease; letter-spacing: 0.02em;
   white-space: nowrap;
 }
 .btn-gradient {
@@ -161,11 +140,14 @@ body {
   box-shadow: 0 4px 14px rgba(139,92,246,0.3);
 }
 .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139,92,246,0.4); opacity: 0.95; }
-.btn-xl { padding: 18px 48px; font-size: 1.1rem; box-shadow: 0 8px 24px rgba(139,92,246,0.4); }
-.nav-ctas .btn { padding: 12px 24px; font-size: 0.9rem; }
+.btn-xl { padding: 18px 48px; font-size: 1.15rem; box-shadow: 0 8px 24px rgba(139,92,246,0.4); }
 
-/* LAYOUT UTILS */
-section { padding: 110px 6%; }
+.nav-ctas .btn { padding: 12px 28px; font-size: 0.9rem; }
+
+/* -------------------------------------
+   LAYOUT UTILS 
+-------------------------------------- */
+section { padding: 100px 6%; } 
 .wrap { max-width: 1140px; margin: 0 auto; }
 .center { text-align: center; }
 .text-left { text-align: left !important; }
@@ -176,7 +158,7 @@ section { padding: 110px 6%; }
   font-size: 0.75rem; font-weight: 800; letter-spacing: 0.15em;
   text-transform: uppercase; color: var(--muted);
   background: var(--border);
-  padding: 6px 16px; border-radius: 100px;
+  padding: 6px 14px; border-radius: 100px;
   margin-bottom: 24px;
 }
 .dark-mode .eyebrow { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.15); }
@@ -193,15 +175,17 @@ section { padding: 110px 6%; }
 }
 .dark-mode .section-sub { color: rgba(255,255,255,0.65); }
 
-/* HERO */
+/* -------------------------------------
+   SECTION STYLING 
+-------------------------------------- */
+/* HERO (LIGHT) */
 .hero {
-  min-height: 90vh; display: flex; flex-direction: column;
+  min-height: 85vh; display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  text-align: center; padding: 140px 6% 80px;
-  background-color: #FAFAFC;
+  text-align: center; padding: 180px 6% 80px; /* Accounts for header height */
+  background-color: var(--alt-bg);
   position: relative; overflow: hidden;
 }
-
 .hero-grid-bg {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background-size: 40px 40px;
@@ -225,7 +209,7 @@ section { padding: 110px 6%; }
   padding: 6px 20px; border-radius: 100px;
   background: var(--white); color: var(--text);
   font-size: 0.75rem; font-weight: 800; letter-spacing: 0.05em;
-  margin-bottom: 24px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.04); text-transform: uppercase;
+  margin-bottom: 24px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.04);
 }
 .hero-pill .divider { color: var(--muted); font-weight: 300; margin: 0 2px; }
 .hero-pill .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); animation: pulse 2s infinite; }
@@ -241,10 +225,9 @@ section { padding: 110px 6%; }
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 .hero-sub {
   font-size: clamp(1.05rem, 1.8vw, 1.2rem); color: var(--muted);
-  max-width: 800px; margin: 0 auto 16px; font-weight: 500; line-height: 1.6; text-wrap: balance;
+  max-width: 800px; margin: 0 auto 16px; font-weight: 500; line-height: 1.6;
 }
 .hero-event-details {
   display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
@@ -254,35 +237,48 @@ section { padding: 110px 6%; }
 .hero-event-details svg { color: var(--blue); }
 
 .hero-actions { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.micro-copy { margin-top: 16px; font-size: 0.85rem; font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: 6px;}
 
-/* STRUCTURAL SPEC GRIDS */
+/* STRUCTURAL BACKGROUNDS */
 .light-bg { background: var(--light); }
-.alt-bg { background-color: var(--alt-bg); }
+.white-bg { background-color: var(--white); }
+.dark-section { background: var(--dark-bg); color: var(--white); }
+.agenda-section { background-color: #050810; border-top: 1px solid rgba(255,255,255,0.06); }
+
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
 
 /* SIGNALS (Numbers) */
 .stat-signal {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-top: 4px solid var(--blue);
-  border-radius: 12px;
-  padding: 32px 24px;
-  text-align: left;
+  background: var(--white); border: 1px solid var(--border);
+  border-top: 4px solid var(--blue); border-radius: 12px;
+  padding: 32px 24px; text-align: left;
   box-shadow: 0 4px 20px rgba(0,0,0,0.03);
 }
 .stat-signal:nth-child(2) { border-top-color: var(--orange); }
 .stat-signal:nth-child(3) { border-top-color: var(--pink); }
-
 .stat-number { font-size: 4.5rem; font-weight: 900; line-height: 1; margin-bottom: 12px; letter-spacing: -0.04em; color: var(--text); }
 .text-gradient { background: linear-gradient(135deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .text-gradient-2 { background: linear-gradient(135deg, var(--orange), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
 .spec-title { font-size: 1.05rem; font-weight: 900; margin-bottom: 8px; color: var(--text); letter-spacing: -0.02em; line-height: 1.3; }
 .spec-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
 
-/* DELIVERABLES (What Gets Fixed Grid) */
+/* ICP (Who Should Attend - DARK MODE) */
+.icp-wrap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1040px; margin: 0 auto; text-align: left; }
+.icp-card { 
+  background: var(--dark-surface); border: 1px solid var(--dark-border); 
+  border-radius: 16px; padding: 40px; display: flex; flex-direction: column; height: 100%; 
+  transition: transform 0.2s, border-color 0.2s;
+}
+.icp-card:hover { transform: translateY(-4px); border-color: var(--blue); }
+.icp-icon { 
+  width: 48px; height: 48px; border-radius: 12px; 
+  background: rgba(0,139,248,0.1); color: var(--blue); 
+  display: flex; align-items: center; justify-content: center; margin-bottom: 20px; 
+}
+.icp-card-title { font-size: 1.25rem; font-weight: 800; color: var(--white); margin-bottom: 12px; letter-spacing: -0.02em;}
+.icp-card-desc { font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.6; flex-grow: 1; font-weight: 400;}
+
+/* DELIVERABLES (What Gets Fixed - LIGHT MODE) */
 .del-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1040px; margin: 0 auto; text-align: left; }
 .del-card {
   background: var(--white); border: 1px solid var(--border); border-top: 4px solid var(--blue);
@@ -300,31 +296,7 @@ section { padding: 110px 6%; }
   font-size: 0.95rem; font-weight: 600; color: var(--text); line-height: 1.6; text-align: left;
 }
 
-/* ICP (Who Should Attend Grid) */
-.dark-section { background: var(--dark-bg); color: var(--white); }
-.icp-wrap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1040px; margin: 0 auto; text-align: left; }
-.icp-card { 
-  background: var(--dark-surface); border: 1px solid var(--dark-border); 
-  border-radius: 16px; padding: 40px; display: flex; flex-direction: column; height: 100%; 
-  transition: transform 0.2s, border-color 0.2s;
-}
-.icp-card:hover { transform: translateY(-4px); border-color: var(--blue); }
-.icp-icon { 
-  width: 48px; height: 48px; border-radius: 12px; 
-  background: rgba(0,139,248,0.1); color: var(--blue); 
-  display: flex; align-items: center; justify-content: center; margin-bottom: 20px; 
-}
-.icp-card-title { font-size: 1.25rem; font-weight: 800; color: var(--white); margin-bottom: 12px; letter-spacing: -0.02em;}
-.icp-card-desc { font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.6; flex-grow: 1; font-weight: 400;}
-
-/* AGENDA VARIATION STYLING */
-.agenda-section {
-  background-color: #050810; 
-  background-image: radial-gradient(ellipse at top center, rgba(250, 15, 156, 0.08) 0%, transparent 60%);
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-
-/* HIGH-IMPACT TIMELINE */
+/* HIGH-IMPACT TIMELINE (DARK MODE) */
 .timeline-wrap { 
   --node-size: 54px;
   --tl-pad: 20px;
@@ -368,7 +340,7 @@ section { padding: 110px 6%; }
 .tl-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 16px; color: var(--white); }
 .tl-desc { font-size: 1rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
 
-/* SPEAKERS */
+/* SPEAKERS (LIGHT) */
 .speaker-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 900px; margin: 0 auto; }
 .speaker-card {
   background: var(--white); border: 1px solid var(--border);
@@ -376,7 +348,6 @@ section { padding: 110px 6%; }
   box-shadow: 0 8px 24px rgba(0,0,0,0.04);
 }
 .speaker-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid var(--white); margin: 0 auto 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-
 .metric-badge {
   display: inline-block; background: rgba(0,139,248,0.1); color: var(--blue);
   font-weight: 800; font-size: 0.95rem; padding: 6px 12px; border-radius: 6px;
@@ -429,8 +400,8 @@ section { padding: 110px 6%; }
 .form-error { display: none; background: #FFF5F5; color: #C53030; padding: 12px 16px; border-radius: 10px; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; border: 1px solid #FEB2B2; }
 
 /* FOOTER */
-footer { background: var(--white); padding: 80px 6% 40px; border-top: 1px solid var(--border); text-align: left; }
-.footer-grid { display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 64px; max-width: 1140px; margin: 0 auto; align-items: start; }
+footer { background: var(--white); padding: 80px 6% 40px; text-align: left; border-top: 1px solid var(--border); }
+.footer-grid { display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 40px; max-width: 1100px; margin: 0 auto; align-items: start; }
 .footer-bottom { 
   margin-top: 60px; border-top: 1px solid var(--border); padding-top: 24px; 
   display: flex; flex-direction: column; align-items: center; gap: 12px; 
@@ -444,7 +415,6 @@ footer { background: var(--white); padding: 80px 6% 40px; border-top: 1px solid 
 @media (max-width: 900px) {
   .grid-3, .grid-2, .speaker-grid, .footer-grid, .del-grid, .icp-wrap { grid-template-columns: 1fr; }
   .hero-event-details { flex-direction: column; gap: 12px; align-items: center; }
-  .footer-grid { gap: 48px; }
   .timeline-wrap { --node-size: 40px; --tl-pad: 20px; }
   .tl-item { gap: 24px; }
   .tl-node { font-size: 1rem; }
@@ -452,31 +422,26 @@ footer { background: var(--white); padding: 80px 6% 40px; border-top: 1px solid 
 }
 
 @media (max-width: 768px) {
-  :root { --banner-height: 56px; }
   .modal-layout { grid-template-columns: 1fr; gap: 40px; }
   .modal-content { padding: 32px 24px; }
   .nav-ctas .btn { padding: 10px 16px; font-size: 0.85rem; }
-  .hero { padding: 100px 5% 60px; }
 }
 
 @media (max-width: 640px) {
-  section { padding: 80px 5% 60px; } 
+  section { padding: 80px 5%; } 
   .nav { justify-content: center; padding: 0 5%; }
-  
   .nav.scrolled { 
-    position: fixed;
-    width: 92%; padding: 14px 20px; border-radius: 40px; 
-    min-height: 72px; justify-content: center; top: 16px;
+    width: 92%; padding: 12px 20px; border-radius: 40px; 
+    min-height: 60px; justify-content: center; top: 12px;
   }
-  
-  .nav-logo-wrap { gap: 16px; justify-content: center; width: 100%; }
-  
-  .nav-logo img { height: 60px !important; width: auto !important; }
-  .nav.scrolled .nav-logo img { height: 40px !important; width: auto !important; }
+  .nav-logo-wrap { gap: 12px; justify-content: center; width: 100%; }
+  .nav-logo.saasnova img { height: 32px !important; }
+  .nav-logo.workspan img { height: 38px !important; }
   
   .nav-divider { display: none; }
   .nav-ctas { display: none !important; } 
-  .hero-actions { flex-direction: column; width: 100%; }
+  .nav-badge { display: none !important; }
+  .hero-actions { width: 100%; }
   .hero-actions .btn { width: 100%; }
   .section-title { font-size: clamp(1.8rem, 8vw, 2.2rem); }
 }
@@ -486,64 +451,39 @@ footer { background: var(--white); padding: 80px 6% 40px; border-top: 1px solid 
   .tl-item { gap: 16px; }
   .tl-node { font-size: 0.9rem; }
   .tl-content { padding: 24px 16px; }
-  .tl-title { font-size: 1.15rem; }
-  .tl-desc { font-size: 0.9rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- URGENCY BANNER TICKER -->
-<div class="urgency-banner">
-  <div class="ticker-track">
-    <!-- Duplicate text flawlessly structured for a smooth, spaced loop -->
-    <div class="ticker-content">
-      <span class="ticker-item">🚨 AWS ENFORCEMENT: JULY 31, 2026</span> <span class="ticker-sep">&bull;</span>
-      <span class="ticker-item">SECURE YOUR CO-SELL FUNDING VISIBILITY</span> <span class="ticker-sep">&bull;</span>
-      <span class="ticker-item">AVOID THE PARTNER CENTRAL BOTTLENECK</span> <span class="ticker-sep">&bull;</span>
-      <span class="ticker-item">REGISTER FOR FREE LIVE WEBINAR</span> <span class="ticker-sep">&bull;</span>
-    </div>
-    <div class="ticker-content">
-      <span class="ticker-item">🚨 AWS ENFORCEMENT: JULY 31, 2026</span> <span class="ticker-sep">&bull;</span>
-      <span class="ticker-item">SECURE YOUR CO-SELL FUNDING VISIBILITY</span> <span class="ticker-sep">&bull;</span>
-      <span class="ticker-item">AVOID THE PARTNER CENTRAL BOTTLENECK</span> <span class="ticker-sep">&bull;</span>
-      <span class="ticker-item">REGISTER FOR FREE LIVE WEBINAR</span> <span class="ticker-sep">&bull;</span>
-    </div>
-    <div class="ticker-content">
-      <span class="ticker-item">🚨 AWS ENFORCEMENT: JULY 31, 2026</span> <span class="ticker-sep">&bull;</span>
-      <span class="ticker-item">SECURE YOUR CO-SELL FUNDING VISIBILITY</span> <span class="ticker-sep">&bull;</span>
-      <span class="ticker-item">AVOID THE PARTNER CENTRAL BOTTLENECK</span> <span class="ticker-sep">&bull;</span>
-      <span class="ticker-item">REGISTER FOR FREE LIVE WEBINAR</span> <span class="ticker-sep">&bull;</span>
-    </div>
-    <div class="ticker-content">
-      <span class="ticker-item">🚨 AWS ENFORCEMENT: JULY 31, 2026</span> <span class="ticker-sep">&bull;</span>
-      <span class="ticker-item">SECURE YOUR CO-SELL FUNDING VISIBILITY</span> <span class="ticker-sep">&bull;</span>
-      <span class="ticker-item">AVOID THE PARTNER CENTRAL BOTTLENECK</span> <span class="ticker-sep">&bull;</span>
-      <span class="ticker-item">REGISTER FOR FREE LIVE WEBINAR</span> <span class="ticker-sep">&bull;</span>
-    </div>
+<div class="header-container">
+  <!-- 1. URGENCY BANNER (Red BG, Yellow Highlight, No Em-Dashes) -->
+  <div class="urgency-banner" id="topBanner">
+    <span>🚨 <span class="text-yellow">AWS Deadline: July 31, 2026</span> Secure your co-sell funding priority and avoid Partner Central bottlenecks.</span>
   </div>
+
+  <!-- 2. DYNAMIC NAV (Always Visible Under Banner) -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-logo-wrap">
+      <a href="#" class="nav-logo saasnova">
+        <img src="saasnova-logo.png" alt="SaaSNova" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <span style="display:none;">SaaSNova</span>
+      </a>
+      <div class="nav-divider"></div>
+      <a href="#" class="nav-logo workspan">
+        <img src="workspan-logo.png" alt="Workspan" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <span style="display:none;">Workspan</span>
+      </a>
+      <div class="nav-badge"><span class="live-dot"></span> Free Live Webinar</div>
+    </div>
+    <div class="nav-ctas">
+      <button onclick="openModal()" class="btn btn-gradient">Register Now &rarr;</button>
+    </div>
+  </nav>
 </div>
 
-<!-- DYNAMIC MORPHING NAV (Floating Pill on scroll) -->
-<nav class="nav" id="mainNav">
-  <div class="nav-logo-wrap">
-    <a href="#" class="nav-logo saasnova">
-      <img src="saasnova-logo.png" alt="SaaSNova" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-      <span style="display:none;">SaaSNova</span>
-    </a>
-    <div class="nav-divider"></div>
-    <a href="#" class="nav-logo workspan">
-      <img src="workspan-logo.png" alt="Workspan" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-      <span style="display:none;">Workspan</span>
-    </a>
-    <div class="nav-badge"><span class="live-dot"></span> Free Live Webinar</div>
-  </div>
-  <div class="nav-ctas">
-    <button onclick="openModal()" class="btn btn-gradient">Register Now &rarr;</button>
-  </div>
-</nav>
 
-<!-- HERO (LIGHT MODE) -->
+<!-- [ LIGHT SECTION ] HERO -->
 <section class="hero">
   <div class="hero-grid-bg"></div>
   <div class="hero-glow-core"></div>
@@ -581,16 +521,12 @@ footer { background: var(--white); padding: 80px 6% 40px; border-top: 1px solid 
 
     <div class="hero-actions">
       <button onclick="openModal()" class="btn btn-gradient btn-xl">Register Now &rarr;</button>
-      <div class="micro-copy">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E11D48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        Deadline to comply is July 31, 2026
-      </div>
     </div>
   </div>
 </section>
 
-<!-- WHY NOW (Context) - WHITE BG -->
-<section class="border-y border-border" style="background-color: var(--white);">
+<!-- [ WHITE SECTION ] WHY NOW -->
+<section class="white-bg border-y border-border">
   <div class="wrap center">
     <div class="eyebrow" style="color:var(--blue); border-color:rgba(0,139,248,0.25); background:rgba(0,139,248,0.1);">Why Now</div>
     <h2 class="section-title">Why Join This Session</h2>
@@ -618,8 +554,43 @@ footer { background: var(--white); padding: 80px 6% 40px; border-top: 1px solid 
   </div>
 </section>
 
-<!-- DELIVERABLES / WHAT GETS FIXED -->
-<section class="light-bg border-b border-border">
+<!-- [ DARK SECTION ] WHO SHOULD ATTEND -->
+<section class="dark-section dark-mode">
+  <div class="wrap center">
+    <div class="eyebrow">Who Should Attend</div>
+    <h2 class="section-title">Essential for APN Partners on AWS</h2>
+    <p class="section-sub" style="margin-bottom: 56px;">This briefing is highly specialized for ISV leaders responsible for revenue, technical compliance, and AWS alliances.</p>
+    
+    <div class="icp-wrap text-left">
+      <div class="icp-card">
+        <div class="icp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3 class="icp-card-title">Alliance & Partner Leaders</h3>
+        <p class="icp-card-desc">If you manage the AWS relationship, you need to understand the PRM mandate immediately to protect your tier status and ensure your funding isn't frozen.</p>
+      </div>
+      
+      <div class="icp-card">
+        <div class="icp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3 class="icp-card-title">Cloud Engineering & DevOps</h3>
+        <p class="icp-card-desc">For the teams tasked with the technical execution of tagging and mapping the AWS environment to track product consumption accurately.</p>
+      </div>
+      
+      <div class="icp-card">
+        <div class="icp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3 class="icp-card-title">Revenue Operations</h3>
+        <p class="icp-card-desc">For RevOps leaders responsible for maintaining the flow of ACE motions, managing CRM integrations, and safeguarding co-sell data validity.</p>
+      </div>
+
+      <div class="icp-card">
+        <div class="icp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+        <h3 class="icp-card-title">ISV Founders & Execs</h3>
+        <p class="icp-card-desc">For leaders focused on protecting company profitability, maintaining the "Deployed on AWS" badge, and sustaining cloud GTM momentum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- [ LIGHT SECTION ] DELIVERABLES -->
+<section class="light-bg border-y border-border">
   <div class="wrap center">
     <div class="eyebrow">Key Takeaways</div>
     <h2 class="section-title">What Gets Fixed in this Session</h2>
@@ -658,42 +629,7 @@ footer { background: var(--white); padding: 80px 6% 40px; border-top: 1px solid 
   </div>
 </section>
 
-<!-- WHO THIS IS FOR -->
-<section class="dark-section dark-mode">
-  <div class="wrap center">
-    <div class="eyebrow">Who Should Attend</div>
-    <h2 class="section-title">Essential for APN Partners on AWS</h2>
-    <p class="section-sub" style="margin-bottom: 56px;">This briefing is highly specialized for ISV leaders responsible for revenue, technical compliance, and AWS alliances.</p>
-    
-    <div class="icp-wrap text-left">
-      <div class="icp-card">
-        <div class="icp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <h3 class="icp-card-title">Alliance & Partner Leaders</h3>
-        <p class="icp-card-desc">If you manage the AWS relationship, you need to understand the PRM mandate immediately to protect your tier status and ensure your funding isn't frozen.</p>
-      </div>
-      
-      <div class="icp-card">
-        <div class="icp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-        <h3 class="icp-card-title">Cloud Engineering & DevOps</h3>
-        <p class="icp-card-desc">For the teams tasked with the technical execution of tagging and mapping the AWS environment to track product consumption accurately.</p>
-      </div>
-      
-      <div class="icp-card">
-        <div class="icp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-        <h3 class="icp-card-title">Revenue Operations</h3>
-        <p class="icp-card-desc">For RevOps leaders responsible for maintaining the flow of ACE motions, managing CRM integrations, and safeguarding co-sell data validity.</p>
-      </div>
-
-      <div class="icp-card">
-        <div class="icp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
-        <h3 class="icp-card-title">ISV Founders & Execs</h3>
-        <p class="icp-card-desc">For leaders focused on protecting company profitability, maintaining the "Deployed on AWS" badge, and sustaining cloud GTM momentum.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- AGENDA TIMELINE (Added Agenda Variation Section) -->
+<!-- [ DARK SECTION ] AGENDA TIMELINE -->
 <section id="agenda" class="agenda-section dark-mode">
   <div class="wrap center">
     <div class="eyebrow" style="color:var(--pink); border-color:rgba(250,15,156,0.25); background:rgba(250,15,156,0.1);">Webinar Agenda</div>
@@ -744,9 +680,8 @@ footer { background: var(--white); padding: 80px 6% 40px; border-top: 1px solid 
   </div>
 </section>
 
-
-<!-- SPEAKERS -->
-<section class="alt-bg border-y border-border">
+<!-- [ WHITE SECTION ] SPEAKERS -->
+<section class="white-bg border-y border-border">
   <div class="wrap center">
     <div class="eyebrow" style="color:var(--blue); border-color:rgba(0,139,248,0.25); background:rgba(0,139,248,0.1);">The Experts</div>
     <h2 class="section-title">Meet Your Speakers</h2>
@@ -771,8 +706,7 @@ footer { background: var(--white); padding: 80px 6% 40px; border-top: 1px solid 
   </div>
 </section>
 
-
-<!-- FINAL CTA -->
+<!-- [ GRADIENT SECTION ] FINAL CTA -->
 <section class="cta-gradient">
   <div class="wrap center">
     <h2 class="section-title">Fix your AWS visibility before the deadline closes.</h2>
@@ -916,9 +850,11 @@ footer { background: var(--white); padding: 80px 6% 40px; border-top: 1px solid 
 <script>
 // Dynamic Morphing Nav (Floating behavior below banner)
 const mainNav = document.getElementById('mainNav');
-const bannerHeight = 56; // match var(--banner-height)
+const topBanner = document.getElementById('topBanner');
 
 window.addEventListener('scroll', () => {
+  // Add scrolled state after passing the banner height
+  const bannerHeight = topBanner ? topBanner.offsetHeight : 40;
   if (window.scrollY > bannerHeight) {
     mainNav.classList.add('scrolled');
   } else {
