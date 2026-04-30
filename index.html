@@ -23,7 +23,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
   --blue: #008BF8;
@@ -38,7 +38,12 @@
   --alt-bg: #F4F7FB;
   --border: #E2E8F0;
   --font: 'Inter', -apple-system, sans-serif;
-  --dark-bg: #0A0F1F;
+  
+  --dark-bg: #0B1120;
+  --dark-surface: #131B2F;
+  --dark-border: #1E293B;
+  
+  --banner-height: 56px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,41 +57,82 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* URGENCY BANNER TICKER (Pure CSS) */
+.urgency-banner {
+  position: relative; z-index: 300;
+  height: var(--banner-height);
+  background: #E11D48;
+  color: var(--white);
+  display: flex; align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.9rem; font-weight: 700; letter-spacing: 0.08em;
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 70s linear infinite;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+.ticker-content {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  padding-right: 48px;
+}
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+}
+.ticker-sep {
+  margin: 0 32px;
+  opacity: 0.5;
+  font-weight: 400;
+}
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 /* DYNAMIC MORPHING NAV */
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  position: absolute; top: var(--banner-height); left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 6%; height: 90px; width: 100%; max-width: none;
-  background: transparent;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 0 6%; height: 110px; width: 100%; max-width: none;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   transform: translateY(0);
 }
 
-/* NAV SCROLLED STATE */
+/* NAV SCROLLED STATE (FLOATING PILL) */
 .nav.scrolled {
-  top: 16px; left: 50%; transform: translateX(-50%);
-  width: 96%; max-width: 1200px; height: auto; min-height: 76px;
+  position: fixed;
+  top: 20px; left: 50%; transform: translateX(-50%);
+  width: 98%; max-width: 1240px; height: auto; min-height: 84px;
   background: rgba(255,255,255,0.95);
   backdrop-filter: blur(16px);
   border-radius: 100px;
-  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-  border: 1px solid rgba(0,0,0,0.05);
-  padding: 10px 16px 10px 32px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  border: 1px solid rgba(255,255,255,0.8);
+  border-bottom: 1px solid rgba(255,255,255,0.8);
+  padding: 10px 16px 10px 36px;
 }
 
 .nav-logo-wrap { display: flex; align-items: center; gap: 24px; flex-wrap: nowrap; }
-.nav-logo { display: flex; align-items: center; text-decoration: none; font-weight: 900; font-size: 1.25rem; letter-spacing: -0.04em; }
+.nav-logo { display: flex; align-items: center; text-decoration: none; gap: 10px; font-weight: 900; font-size: 1.25rem; letter-spacing: -0.04em; }
 .nav-logo.saasnova { color: var(--blue); }
 .nav-logo.workspan { color: var(--violet); }
 
-/* OPTICALLY BALANCED LOGOS */
-.nav-logo.saasnova img { height: 50px; max-height: 50px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
-.nav-logo.workspan img { height: 70px; max-height: 70px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
+/* LOGO SIZING SCALES (Increased 2x) */
+.nav-logo img { height: 80px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
+.nav.scrolled .nav-logo img { height: 50px; }
 
-.nav.scrolled .nav-logo.saasnova img { height: 50px; max-height: 50px; }
-.nav.scrolled .nav-logo.workspan img { height: 58px; max-height: 58px; }
-.nav-divider { width: 1px; height: 24px; background: var(--border); transition: all 0.3s; }
+.nav-divider { width: 1px; height: 48px; background: var(--border); transition: all 0.3s; }
+.nav.scrolled .nav-divider { height: 32px; }
 
 /* NAV BADGE */
 .nav-badge {
@@ -97,16 +143,17 @@ body {
   border: 1px solid var(--border); transition: all 0.3s;
 }
 .nav-badge .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); animation: pulse 2s infinite; }
+.nav.scrolled .nav-badge { display: none; }
 
 .nav-ctas { display: flex; gap: 12px; align-items: center; }
 
 /* BUTTONS */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 12px 24px; border-radius: 100px; 
+  padding: 14px 28px; border-radius: 100px; 
   font-family: var(--font); font-size: 0.95rem; font-weight: 800;
   text-decoration: none; cursor: pointer; border: none;
-  transition: all 0.2s ease; letter-spacing: 0.02em;
+  transition: all 0.2s ease; letter-spacing: 0.01em;
   white-space: nowrap;
 }
 .btn-gradient {
@@ -114,12 +161,11 @@ body {
   box-shadow: 0 4px 14px rgba(139,92,246,0.3);
 }
 .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139,92,246,0.4); opacity: 0.95; }
-.btn-xl { padding: 18px 48px; font-size: 1.15rem; box-shadow: 0 8px 24px rgba(139,92,246,0.4); }
-
-.nav-ctas .btn { padding: 14px 32px; font-size: 0.95rem; }
+.btn-xl { padding: 18px 48px; font-size: 1.1rem; box-shadow: 0 8px 24px rgba(139,92,246,0.4); }
+.nav-ctas .btn { padding: 12px 24px; font-size: 0.9rem; }
 
 /* LAYOUT UTILS */
-section { padding: 56px 6%; } 
+section { padding: 110px 6%; }
 .wrap { max-width: 1140px; margin: 0 auto; }
 .center { text-align: center; }
 .text-left { text-align: left !important; }
@@ -130,25 +176,28 @@ section { padding: 56px 6%; }
   font-size: 0.75rem; font-weight: 800; letter-spacing: 0.15em;
   text-transform: uppercase; color: var(--muted);
   background: var(--border);
-  padding: 6px 14px; border-radius: 100px;
-  margin-bottom: 16px;
+  padding: 6px 16px; border-radius: 100px;
+  margin-bottom: 24px;
 }
+.dark-mode .eyebrow { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.15); }
 
 .section-title {
-  font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900;
-  line-height: 1.1; letter-spacing: -0.04em;
-  color: var(--text); margin-bottom: 12px;
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem); font-weight: 900;
+  line-height: 1.15; letter-spacing: -0.03em; text-wrap: balance;
+  color: var(--text); margin-bottom: 20px;
 }
+.dark-mode .section-title { color: var(--white); }
 .section-sub {
-  font-size: 1.1rem; color: var(--muted); max-width: 800px;
-  margin: 0 auto 32px; line-height: 1.6; font-weight: 500;
+  font-size: 1.15rem; color: var(--muted); max-width: 720px;
+  margin: 0 auto 56px; line-height: 1.65; text-wrap: balance; font-weight: 500;
 }
+.dark-mode .section-sub { color: rgba(255,255,255,0.65); }
 
 /* HERO */
 .hero {
-  min-height: 85vh; display: flex; flex-direction: column;
+  min-height: 90vh; display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  text-align: center; padding: 160px 6% 80px;
+  text-align: center; padding: 140px 6% 80px;
   background-color: #FAFAFC;
   position: relative; overflow: hidden;
 }
@@ -176,7 +225,7 @@ section { padding: 56px 6%; }
   padding: 6px 20px; border-radius: 100px;
   background: var(--white); color: var(--text);
   font-size: 0.75rem; font-weight: 800; letter-spacing: 0.05em;
-  margin-bottom: 24px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  margin-bottom: 24px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.04); text-transform: uppercase;
 }
 .hero-pill .divider { color: var(--muted); font-weight: 300; margin: 0 2px; }
 .hero-pill .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); animation: pulse 2s infinite; }
@@ -195,7 +244,7 @@ section { padding: 56px 6%; }
 
 .hero-sub {
   font-size: clamp(1.05rem, 1.8vw, 1.2rem); color: var(--muted);
-  max-width: 800px; margin: 0 auto 16px; font-weight: 500; line-height: 1.6;
+  max-width: 800px; margin: 0 auto 16px; font-weight: 500; line-height: 1.6; text-wrap: balance;
 }
 .hero-event-details {
   display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
@@ -205,7 +254,7 @@ section { padding: 56px 6%; }
 .hero-event-details svg { color: var(--blue); }
 
 .hero-actions { display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.micro-proof { font-size: 0.8rem; font-weight: 700; color: var(--muted); margin-top: 16px; letter-spacing: 0.04em; text-transform: uppercase; }
+.micro-copy { margin-top: 16px; font-size: 0.85rem; font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: 6px;}
 
 /* STRUCTURAL SPEC GRIDS */
 .light-bg { background: var(--light); }
@@ -227,35 +276,99 @@ section { padding: 56px 6%; }
 .stat-signal:nth-child(3) { border-top-color: var(--pink); }
 
 .stat-number { font-size: 4.5rem; font-weight: 900; line-height: 1; margin-bottom: 12px; letter-spacing: -0.04em; color: var(--text); }
+.text-gradient { background: linear-gradient(135deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.text-gradient-2 { background: linear-gradient(135deg, var(--orange), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
 .spec-title { font-size: 1.05rem; font-weight: 900; margin-bottom: 8px; color: var(--text); letter-spacing: -0.02em; line-height: 1.3; }
 .spec-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
 
-/* SPEC CARDS (Agenda & Who) */
-.spec-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px 24px;
-  text-align: left;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.03);
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+/* DELIVERABLES (What Gets Fixed Grid) */
+.del-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1040px; margin: 0 auto; text-align: left; }
+.del-card {
+  background: var(--white); border: 1px solid var(--border); border-top: 4px solid var(--blue);
+  border-radius: 12px; padding: 40px; display: flex; flex-direction: column; text-align: left; height: 100%;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-.spec-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-  border-color: var(--blue);
+.del-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
+.del-card.purple { border-top-color: var(--purple); }
+.del-card.orange { border-top-color: var(--orange); }
+.del-card.pink { border-top-color: var(--pink); }
+.del-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 16px; color: var(--text); letter-spacing: -0.02em; }
+.del-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.6; margin-bottom: 24px; flex-grow: 1; }
+.del-impact {
+  margin-top: auto; padding: 0 0 0 16px; border-left: 2px solid var(--blue);
+  font-size: 0.95rem; font-weight: 600; color: var(--text); line-height: 1.6; text-align: left;
 }
-.spec-icon {
-  width: 40px; height: 40px; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px; 
-}
-.spec-icon.purple { background: rgba(129, 70, 255, 0.08); color: var(--purple); }
-.spec-icon.blue { background: rgba(0,139,248,0.08); color: var(--blue); }
-.spec-icon.orange { background: rgba(241,153,83,0.1); color: var(--orange); }
-.spec-icon.pink { background: rgba(250,15,156,0.1); color: var(--pink); }
 
-/* ICP / SPEAKERS */
+/* ICP (Who Should Attend Grid) */
+.dark-section { background: var(--dark-bg); color: var(--white); }
+.icp-wrap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1040px; margin: 0 auto; text-align: left; }
+.icp-card { 
+  background: var(--dark-surface); border: 1px solid var(--dark-border); 
+  border-radius: 16px; padding: 40px; display: flex; flex-direction: column; height: 100%; 
+  transition: transform 0.2s, border-color 0.2s;
+}
+.icp-card:hover { transform: translateY(-4px); border-color: var(--blue); }
+.icp-icon { 
+  width: 48px; height: 48px; border-radius: 12px; 
+  background: rgba(0,139,248,0.1); color: var(--blue); 
+  display: flex; align-items: center; justify-content: center; margin-bottom: 20px; 
+}
+.icp-card-title { font-size: 1.25rem; font-weight: 800; color: var(--white); margin-bottom: 12px; letter-spacing: -0.02em;}
+.icp-card-desc { font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.6; flex-grow: 1; font-weight: 400;}
+
+/* AGENDA VARIATION STYLING */
+.agenda-section {
+  background-color: #050810; 
+  background-image: radial-gradient(ellipse at top center, rgba(250, 15, 156, 0.08) 0%, transparent 60%);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* HIGH-IMPACT TIMELINE */
+.timeline-wrap { 
+  --node-size: 54px;
+  --tl-pad: 20px;
+  --line-w: 3px;
+  max-width: 860px; margin: 0 auto; position: relative; 
+  padding-left: var(--tl-pad); 
+}
+.timeline-path {
+  position: absolute; 
+  left: calc(var(--tl-pad) + (var(--node-size) / 2) - (var(--line-w) / 2)); 
+  top: 30px; bottom: 30px;
+  width: var(--line-w); background: var(--dark-border); border-radius: 3px;
+}
+.timeline-progress {
+  position: absolute; left: 0; top: 0; width: 100%; height: 0%;
+  background: linear-gradient(to bottom, var(--blue), var(--pink));
+  border-radius: 3px; transition: height 0.2s ease-out;
+}
+.tl-item { 
+  display: flex; gap: 48px; margin-bottom: 48px; position: relative; align-items: flex-start;
+  opacity: 0.4; transition: opacity 0.5s ease, transform 0.5s ease; transform: translateX(-20px);
+}
+.tl-item.active { opacity: 1; transform: translateX(0); }
+.tl-node {
+  width: var(--node-size); height: var(--node-size); flex-shrink: 0; border-radius: 50%;
+  background: var(--dark-surface); border: 2px solid var(--dark-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; font-weight: 900; color: var(--muted); z-index: 2;
+  transition: all 0.5s ease;
+}
+.tl-item.active .tl-node {
+  background: var(--dark-bg); border-color: var(--blue); color: var(--blue);
+  box-shadow: 0 0 20px rgba(0,139,248,0.4);
+}
+.tl-content {
+  flex-grow: 1; background: var(--dark-surface); border: 1px solid var(--dark-border);
+  border-radius: 16px; padding: 40px; transition: border-color 0.3s;
+}
+.tl-item.active .tl-content { border-color: rgba(255,255,255,0.15); }
+.tl-eyebrow { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pink); margin-bottom: 8px; display: block; }
+.tl-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 16px; color: var(--white); }
+.tl-desc { font-size: 1rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
+
+/* SPEAKERS */
 .speaker-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 900px; margin: 0 auto; }
 .speaker-card {
   background: var(--white); border: 1px solid var(--border);
@@ -273,28 +386,11 @@ section { padding: 56px 6%; }
 
 /* CTA */
 .cta-gradient {
-  background: linear-gradient(135deg, #0052FF 0%, #8B5CF6 50%, #FA0F9C 100%);
-  color: var(--white); text-align: center; padding: 80px 6%;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--pink) 100%);
+  color: var(--white); text-align: center; padding: 120px 6%;
 }
-.cta-gradient .section-title { color: var(--white); margin-bottom: 16px; font-size: clamp(2rem, 4vw, 2.8rem); }
-.cta-gradient .section-sub { color: rgba(255,255,255,0.95); margin-bottom: 32px; font-weight: 600; font-size: 1.15rem; max-width: 800px; margin-left: auto; margin-right: auto; }
-
-/* COLLAPSIBLE FAQ */
-.faq-wrap { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; padding-top: 16px;}
-details { 
-  background: var(--white); border: 1px solid var(--border); border-radius: 12px; 
-  padding: 20px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-}
-details:hover { border-color: var(--blue); }
-summary { 
-  font-weight: 800; font-size: 1rem; color: var(--text); list-style: none; 
-  display: flex; justify-content: space-between; align-items: center; 
-}
-summary::-webkit-details-marker { display: none; }
-summary::after { content: '+'; font-size: 1.25rem; color: var(--blue); font-weight: 400; }
-details[open] summary { border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 12px; }
-details[open] summary::after { content: '−'; }
-.faq-a { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
+.cta-gradient .section-title { color: var(--white); margin-bottom: 24px; font-size: clamp(2.2rem, 4.5vw, 3.2rem); }
+.cta-gradient .section-sub { color: rgba(255,255,255,0.95); margin-bottom: 48px; font-weight: 500; font-size: 1.25rem; max-width: 800px; margin-left: auto; margin-right: auto; }
 
 /* MODAL / FORM */
 .modal-overlay {
@@ -319,9 +415,7 @@ details[open] summary::after { content: '−'; }
 }
 .modal-close:hover { background: var(--border); color: var(--text); }
 
-.modal-layout {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
-}
+.modal-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
 .form-group { margin-bottom: 20px; }
 .form-label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text); margin-bottom: 8px; letter-spacing: 0.05em; }
 .form-control, .form-select {
@@ -335,8 +429,8 @@ details[open] summary::after { content: '−'; }
 .form-error { display: none; background: #FFF5F5; color: #C53030; padding: 12px 16px; border-radius: 10px; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; border: 1px solid #FEB2B2; }
 
 /* FOOTER */
-footer { background: var(--white); padding: 80px 6% 40px; text-align: left; }
-.footer-grid { display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 40px; max-width: 1100px; margin: 0 auto; align-items: start; }
+footer { background: var(--white); padding: 80px 6% 40px; border-top: 1px solid var(--border); text-align: left; }
+.footer-grid { display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 64px; max-width: 1140px; margin: 0 auto; align-items: start; }
 .footer-bottom { 
   margin-top: 60px; border-top: 1px solid var(--border); padding-top: 24px; 
   display: flex; flex-direction: column; align-items: center; gap: 12px; 
@@ -348,34 +442,89 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .grid-3, .grid-2, .speaker-grid, .footer-grid { grid-template-columns: 1fr; }
+  .grid-3, .grid-2, .speaker-grid, .footer-grid, .del-grid, .icp-wrap { grid-template-columns: 1fr; }
   .hero-event-details { flex-direction: column; gap: 12px; align-items: center; }
+  .footer-grid { gap: 48px; }
+  .timeline-wrap { --node-size: 40px; --tl-pad: 20px; }
+  .tl-item { gap: 24px; }
+  .tl-node { font-size: 1rem; }
+  .tl-content { padding: 32px 24px; }
 }
 
 @media (max-width: 768px) {
+  :root { --banner-height: 56px; }
   .modal-layout { grid-template-columns: 1fr; gap: 40px; }
   .modal-content { padding: 32px 24px; }
+  .nav-ctas .btn { padding: 10px 16px; font-size: 0.85rem; }
+  .hero { padding: 100px 5% 60px; }
 }
 
 @media (max-width: 640px) {
-  section { padding: 48px 5%; } 
+  section { padding: 80px 5% 60px; } 
   .nav { justify-content: center; padding: 0 5%; }
+  
   .nav.scrolled { 
-    width: 92%; padding: 12px 20px; border-radius: 40px; 
-    min-height: 60px; justify-content: center; top: 12px;
+    position: fixed;
+    width: 92%; padding: 14px 20px; border-radius: 40px; 
+    min-height: 72px; justify-content: center; top: 16px;
   }
-  .nav-logo-wrap { gap: 12px; justify-content: center; width: 100%; }
+  
+  .nav-logo-wrap { gap: 16px; justify-content: center; width: 100%; }
+  
+  .nav-logo img { height: 60px !important; width: auto !important; }
+  .nav.scrolled .nav-logo img { height: 40px !important; width: auto !important; }
+  
+  .nav-divider { display: none; }
   .nav-ctas { display: none !important; } 
-  .nav-badge { display: none !important; }
-  .hero-actions { width: 100%; }
+  .hero-actions { flex-direction: column; width: 100%; }
   .hero-actions .btn { width: 100%; }
   .section-title { font-size: clamp(1.8rem, 8vw, 2.2rem); }
+}
+
+@media (max-width: 480px) {
+  .timeline-wrap { --node-size: 32px; --tl-pad: 12px; }
+  .tl-item { gap: 16px; }
+  .tl-node { font-size: 0.9rem; }
+  .tl-content { padding: 24px 16px; }
+  .tl-title { font-size: 1.15rem; }
+  .tl-desc { font-size: 0.9rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- DYNAMIC MORPHING NAV -->
+<!-- URGENCY BANNER TICKER -->
+<div class="urgency-banner">
+  <div class="ticker-track">
+    <!-- Duplicate text flawlessly structured for a smooth, spaced loop -->
+    <div class="ticker-content">
+      <span class="ticker-item">🚨 AWS ENFORCEMENT: JULY 31, 2026</span> <span class="ticker-sep">&bull;</span>
+      <span class="ticker-item">SECURE YOUR CO-SELL FUNDING VISIBILITY</span> <span class="ticker-sep">&bull;</span>
+      <span class="ticker-item">AVOID THE PARTNER CENTRAL BOTTLENECK</span> <span class="ticker-sep">&bull;</span>
+      <span class="ticker-item">REGISTER FOR FREE LIVE WEBINAR</span> <span class="ticker-sep">&bull;</span>
+    </div>
+    <div class="ticker-content">
+      <span class="ticker-item">🚨 AWS ENFORCEMENT: JULY 31, 2026</span> <span class="ticker-sep">&bull;</span>
+      <span class="ticker-item">SECURE YOUR CO-SELL FUNDING VISIBILITY</span> <span class="ticker-sep">&bull;</span>
+      <span class="ticker-item">AVOID THE PARTNER CENTRAL BOTTLENECK</span> <span class="ticker-sep">&bull;</span>
+      <span class="ticker-item">REGISTER FOR FREE LIVE WEBINAR</span> <span class="ticker-sep">&bull;</span>
+    </div>
+    <div class="ticker-content">
+      <span class="ticker-item">🚨 AWS ENFORCEMENT: JULY 31, 2026</span> <span class="ticker-sep">&bull;</span>
+      <span class="ticker-item">SECURE YOUR CO-SELL FUNDING VISIBILITY</span> <span class="ticker-sep">&bull;</span>
+      <span class="ticker-item">AVOID THE PARTNER CENTRAL BOTTLENECK</span> <span class="ticker-sep">&bull;</span>
+      <span class="ticker-item">REGISTER FOR FREE LIVE WEBINAR</span> <span class="ticker-sep">&bull;</span>
+    </div>
+    <div class="ticker-content">
+      <span class="ticker-item">🚨 AWS ENFORCEMENT: JULY 31, 2026</span> <span class="ticker-sep">&bull;</span>
+      <span class="ticker-item">SECURE YOUR CO-SELL FUNDING VISIBILITY</span> <span class="ticker-sep">&bull;</span>
+      <span class="ticker-item">AVOID THE PARTNER CENTRAL BOTTLENECK</span> <span class="ticker-sep">&bull;</span>
+      <span class="ticker-item">REGISTER FOR FREE LIVE WEBINAR</span> <span class="ticker-sep">&bull;</span>
+    </div>
+  </div>
+</div>
+
+<!-- DYNAMIC MORPHING NAV (Floating Pill on scroll) -->
 <nav class="nav" id="mainNav">
   <div class="nav-logo-wrap">
     <a href="#" class="nav-logo saasnova">
@@ -425,18 +574,22 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; }
         10:00 AM PST (NA) • 9:00 PM PST (APJ)
       </span>
       <span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>
         English
       </span>
     </div>
 
     <div class="hero-actions">
       <button onclick="openModal()" class="btn btn-gradient btn-xl">Register Now &rarr;</button>
+      <div class="micro-copy">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E11D48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Deadline to comply is July 31, 2026
+      </div>
     </div>
   </div>
 </section>
 
-<!-- WHY NOW (Context) -->
+<!-- WHY NOW (Context) - WHITE BG -->
 <section class="border-y border-border" style="background-color: var(--white);">
   <div class="wrap center">
     <div class="eyebrow" style="color:var(--blue); border-color:rgba(0,139,248,0.25); background:rgba(0,139,248,0.1);">Why Now</div>
@@ -465,67 +618,135 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; }
   </div>
 </section>
 
-<!-- THE BLUEPRINT (Spec Cards) -->
-<section class="alt-bg">
+<!-- DELIVERABLES / WHAT GETS FIXED -->
+<section class="light-bg border-b border-border">
   <div class="wrap center">
-    <div class="eyebrow" style="color:var(--violet); border-color:rgba(139,92,246,0.25); background:rgba(139,92,246,0.1);">Execution Mechanics</div>
-    <h2 class="section-title">What Actually Gets Fixed</h2>
-    <p class="section-sub">We will break down the exact workflows and infrastructure required to capture more deals and accelerate your co-sell mechanics before the July 31st deadline.</p>
+    <div class="eyebrow">Key Takeaways</div>
+    <h2 class="section-title">What Gets Fixed in this Session</h2>
+    <p class="section-sub">Leave the webinar with a definitive action plan to protect your AWS partnership status and revenue streams.</p>
     
-    <div class="grid-2 text-left" style="margin-top: 32px;">
-      <div class="spec-card">
-        <div class="spec-icon purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
-        <h3 class="spec-title">Migrate without losing attribution data (most teams do)</h3>
-        <p class="spec-desc">Get prescriptive guidance on successfully navigating the AWS Partner Central migration without dropping existing deals or breaking your current tracking workflows.</p>
+    <div class="del-grid text-left">
+      <div class="del-card">
+        <h3 class="del-title">Resource Tagging Audits</h3>
+        <p class="del-desc">Clear guidelines on how to structure and audit your resource tags so consumption is accurately attributed by AWS systems.</p>
+        <div class="del-impact">
+          <span style="color:var(--blue); font-weight:800;">&rarr; Goal:</span> Ensure AWS sees the consumption your product drives.
+        </div>
       </div>
-      <div class="spec-card">
-        <div class="spec-icon orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div>
-        <h3 class="spec-title">Architect AWS accounts for maximum co-sell credit</h3>
-        <p class="spec-desc">Learn the vital importance of selecting and connecting the correct AWS Account architectures to link natively with Partner Central for immediate funding visibility.</p>
+      <div class="del-card purple">
+        <h3 class="del-title">Funding Protection Strategy</h3>
+        <p class="del-desc">The exact steps and documentation required to ensure your AWS Partner Funding Benefits remain active and accessible.</p>
+        <div class="del-impact" style="border-left-color:var(--purple);">
+          <span style="color:var(--purple); font-weight:800;">&rarr; Goal:</span> Protect your margins and co-investment capital.
+        </div>
       </div>
-      <div class="spec-card">
-        <div class="spec-icon pink"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-        <h3 class="spec-title">Exact steps AWS uses to validate partner visibility</h3>
-        <p class="spec-desc">Discover the precise, non-negotiable steps to achieve full compliance for Partner Revenue Measurement and permanently lock in your impact attribution.</p>
+      <div class="del-card orange">
+        <h3 class="del-title">ACE Pipeline Continuity</h3>
+        <p class="del-desc">How to keep your co-sell data flowing seamlessly into Partner Central without triggering compliance blocks or submission errors.</p>
+        <div class="del-impact" style="border-left-color:var(--orange);">
+          <span style="color:var(--orange); font-weight:800;">&rarr; Goal:</span> Maintain uninterrupted co-sell velocity.
+        </div>
       </div>
-      <div class="spec-card">
-        <div class="spec-icon blue"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div>
-        <h3 class="spec-title">Live teardown of specific PRM integration blockers</h3>
-        <p class="spec-desc">Bring your toughest operational and transition blockers to our live teardown session handled directly by our seasoned AWS Partnership experts.</p>
+      <div class="del-card pink">
+        <h3 class="del-title">Marketplace Readiness</h3>
+        <p class="del-desc">Ensuring your public listings and private offer capabilities do not experience administrative delays due to failed PRM audits.</p>
+        <div class="del-impact" style="border-left-color:var(--pink);">
+          <span style="color:var(--pink); font-weight:800;">&rarr; Goal:</span> Bypass enterprise procurement friction.
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TARGET AUDIENCE -->
-<section class="border-y border-border" style="background-color: var(--white);">
+<!-- WHO THIS IS FOR -->
+<section class="dark-section dark-mode">
   <div class="wrap center">
-    <div class="eyebrow" style="color:var(--orange); border-color:rgba(241,153,83,0.25); background:rgba(241,153,83,0.1);">Who This Is For</div>
-    <h2 class="section-title">Who Should Attend</h2>
-    <p class="section-sub">Built specifically for leaders ready to safeguard their funding and turn their AWS partnership into a scalable, high-performing revenue system.</p>
+    <div class="eyebrow">Who Should Attend</div>
+    <h2 class="section-title">Essential for APN Partners on AWS</h2>
+    <p class="section-sub" style="margin-bottom: 56px;">This briefing is highly specialized for ISV leaders responsible for revenue, technical compliance, and AWS alliances.</p>
     
-    <div class="grid-3 text-left" style="margin-top: 32px;">
-      <div class="spec-card">
-        <div class="spec-icon purple"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div>
-        <h3 class="spec-title">Product & Engineering Leaders</h3>
-        <p class="spec-desc">Implement PRM without added complexity.</p>
+    <div class="icp-wrap text-left">
+      <div class="icp-card">
+        <div class="icp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3 class="icp-card-title">Alliance & Partner Leaders</h3>
+        <p class="icp-card-desc">If you manage the AWS relationship, you need to understand the PRM mandate immediately to protect your tier status and ensure your funding isn't frozen.</p>
       </div>
-      <div class="spec-card">
-        <div class="spec-icon orange"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
-        <h3 class="spec-title">GTM & Alliance Leaders</h3>
-        <p class="spec-desc">Unlock co-sell visibility and funding.</p>
+      
+      <div class="icp-card">
+        <div class="icp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3 class="icp-card-title">Cloud Engineering & DevOps</h3>
+        <p class="icp-card-desc">For the teams tasked with the technical execution of tagging and mapping the AWS environment to track product consumption accurately.</p>
       </div>
-      <div class="spec-card">
-        <div class="spec-icon pink"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div>
-        <h3 class="spec-title">Founders & Executives</h3>
-        <p class="spec-desc">Maximize your partnership ROI with confidence.</p>
+      
+      <div class="icp-card">
+        <div class="icp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3 class="icp-card-title">Revenue Operations</h3>
+        <p class="icp-card-desc">For RevOps leaders responsible for maintaining the flow of ACE motions, managing CRM integrations, and safeguarding co-sell data validity.</p>
+      </div>
+
+      <div class="icp-card">
+        <div class="icp-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+        <h3 class="icp-card-title">ISV Founders & Execs</h3>
+        <p class="icp-card-desc">For leaders focused on protecting company profitability, maintaining the "Deployed on AWS" badge, and sustaining cloud GTM momentum.</p>
       </div>
     </div>
   </div>
 </section>
+
+<!-- AGENDA TIMELINE (Added Agenda Variation Section) -->
+<section id="agenda" class="agenda-section dark-mode">
+  <div class="wrap center">
+    <div class="eyebrow" style="color:var(--pink); border-color:rgba(250,15,156,0.25); background:rgba(250,15,156,0.1);">Webinar Agenda</div>
+    <h2 class="section-title">Your 1-3 Day Implementation Path</h2>
+    <p class="section-sub" style="margin-bottom: 80px;">This session is designed to give you the exact blueprint needed to secure your compliance before the massive June bottleneck as ISVs rush to comply.</p>
+
+    <div class="timeline-wrap text-left" id="timeline">
+      <div class="timeline-path">
+        <div class="timeline-progress" id="tl-progress"></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-node">1</div>
+        <div class="tl-content">
+          <span class="tl-eyebrow">Step 1</span>
+          <h3 class="tl-title">Understand exactly what PRM requires</h3>
+          <p class="tl-desc">We decode the exact technical and operational requirements AWS is demanding by July 31, separating the noise from the critical compliance checkpoints.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-node">2</div>
+        <div class="tl-content">
+          <span class="tl-eyebrow">Step 2</span>
+          <h3 class="tl-title">Review your AWS environment + tagging readiness</h3>
+          <p class="tl-desc">Learn how to review your current AWS architecture, assess your resource tagging strategy, and ensure AWS can accurately see the consumption your product drives.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-node">3</div>
+        <div class="tl-content">
+          <span class="tl-eyebrow">Step 3</span>
+          <h3 class="tl-title">Map the 1–3 day implementation path</h3>
+          <p class="tl-desc">Discover the precise roadmap to execute your PRM integration. We will show you how to securely establish compliance with minimal engineering lift.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-node">4</div>
+        <div class="tl-content">
+          <span class="tl-eyebrow">Step 4</span>
+          <h3 class="tl-title">Avoid the June bottleneck</h3>
+          <p class="tl-desc">Get ahead of the massive influx of ISVs who will scramble to comply at the last minute. Ensure your co-sell motions aren't delayed by a flooded AWS approval queue.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- SPEAKERS -->
-<section class="alt-bg border-b border-border">
+<section class="alt-bg border-y border-border">
   <div class="wrap center">
     <div class="eyebrow" style="color:var(--blue); border-color:rgba(0,139,248,0.25); background:rgba(0,139,248,0.1);">The Experts</div>
     <h2 class="section-title">Meet Your Speakers</h2>
@@ -568,8 +789,8 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; }
     <div class="footer-grid text-left">
       <!-- SaaSNova Col -->
       <div>
-        <a href="https://www.saasnova.ai" target="_blank" style="display: block; margin-bottom: 16px;">
-          <img src="saasnova-logo.png" alt="SaaSNova" height="32" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.2rem; color:var(--blue); letter-spacing:-0.04em;\'>SaaSNova</span>'">
+        <a href="https://www.saasnova.ai" target="_blank" style="display: block; margin-bottom: 24px;">
+          <img src="saasnova-logo.png" alt="SaaSNova" style="height: 56px; width: auto; object-fit: contain;" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.6rem; color:var(--blue); letter-spacing:-0.04em;\'>SaaSNova</span>'">
         </a>
         <p class="spec-desc" style="color: var(--text); font-weight: 500;">Strategic GTM leadership and pipeline acceleration for cloud-native ISVs.</p>
         <a href="mailto:marketing@saasnova.ai" style="display: inline-block; margin-top: 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); text-decoration: none;">marketing@saasnova.ai</a>
@@ -577,8 +798,8 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; }
 
       <!-- Workspan Col -->
       <div>
-        <a href="https://www.workspan.com" target="_blank" style="display: block; margin-bottom: 16px;">
-          <img src="workspan-logo.png" alt="Workspan" height="32" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.2rem; color:var(--violet); letter-spacing:-0.04em;\'>Workspan</span>'">
+        <a href="https://www.workspan.com" target="_blank" style="display: block; margin-bottom: 24px;">
+          <img src="workspan-logo.png" alt="Workspan" style="height: 56px; width: auto; object-fit: contain;" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.6rem; color:var(--violet); letter-spacing:-0.04em;\'>Workspan</span>'">
         </a>
         <p class="spec-desc" style="color: var(--text); font-weight: 500;">Co-sell infrastructure and CRM integration for multi-cloud marketplaces.</p>
         <a href="mailto:marketing@workspan.com" style="display: inline-block; margin-top: 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); text-decoration: none;">marketing@workspan.com</a>
@@ -586,7 +807,7 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; }
       
       <!-- Quick Links Col -->
       <div>
-        <h4 style="font-weight: 800; color: var(--text); margin-bottom: 16px; font-size: 1.05rem;">Quick Links</h4>
+        <h4 style="font-weight: 800; color: var(--text); margin-bottom: 24px; font-size: 1.05rem;">Quick Links</h4>
         <a href="https://www.saasnova.ai" target="_blank" style="display: block; color: var(--muted); margin-bottom: 12px; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--blue)'" onmouseout="this.style.color='var(--muted)'">SaaSNova</a>
         <a href="https://www.workspan.com" target="_blank" style="display: block; color: var(--muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--blue)'" onmouseout="this.style.color='var(--muted)'">Workspan</a>
       </div>
@@ -693,15 +914,51 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; }
 </div>
 
 <script>
-// Dynamic Morphing Nav (Scroll Listener)
+// Dynamic Morphing Nav (Floating behavior below banner)
 const mainNav = document.getElementById('mainNav');
+const bannerHeight = 56; // match var(--banner-height)
+
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
+  if (window.scrollY > bannerHeight) {
     mainNav.classList.add('scrolled');
   } else {
     mainNav.classList.remove('scrolled');
   }
 }, { passive: true });
+
+// Interactive Timeline Scroll & Activation Logic
+document.addEventListener('DOMContentLoaded', () => {
+  const tlItems = document.querySelectorAll('.tl-item');
+  const tlProgress = document.getElementById('tl-progress');
+  const timelineWrap = document.getElementById('timeline');
+
+  // Intersection Observer to trigger '.active' state on timeline items
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { rootMargin: '0px 0px -25% 0px', threshold: 0.1 });
+
+  tlItems.forEach(item => observer.observe(item));
+
+  // Scroll listener to paint the timeline progress line
+  window.addEventListener('scroll', () => {
+    if (!timelineWrap || !tlProgress) return;
+    const rect = timelineWrap.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    
+    let progress = 0;
+    // Only calculate progress if the top of the timeline has entered the middle of the screen
+    if (rect.top < windowHeight / 2) {
+      const totalHeight = rect.height;
+      const scrolled = (windowHeight / 2) - rect.top;
+      progress = Math.min(Math.max((scrolled / totalHeight) * 100, 0), 100);
+    }
+    tlProgress.style.height = `${progress}%`;
+  }, { passive: true });
+});
 
 // Modal Logic
 function openModal() {
