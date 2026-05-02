@@ -630,11 +630,9 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
     </div>
 
     <div class="hero-actions">
-      <!-- Selection feedback text directly above the button -->
-      <div id="selectionFeedback" class="selection-feedback">You selected: NA Session (1:00 PM EST)</div>
       
       <!-- Ownership CTA language -->
-      <button id="heroCTA" onclick="openModalAndMapSession()" class="btn btn-gradient btn-xl">Save My NA Seat &rarr;</button>
+      <button id="heroCTA" onclick="openModalAndMapSession()" class="btn btn-gradient btn-xl">Register My NA Seat &rarr;</button>
       
       <!-- High urgency conversion reinforcement block -->
       <div class="cta-urgency">
@@ -968,8 +966,8 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
       </div>
       <h3 class="section-title" style="font-size: 1.8rem; margin-bottom: 12px;">Application Received</h3>
       <p style="color: var(--muted); margin-bottom: 32px; font-size: 1.05rem; line-height: 1.6;">
-        We review registrations to ensure session relevance.<br>
-        If approved, you’ll receive your access link via email.
+       We’re processing your registration.<br>
+        Access details and calendar invite will be shared via email.
       </p>
       
       <button onclick="closeModal()" class="btn" style="background: var(--light); color: var(--text); border: 1px solid var(--border); width: 100%; max-width: 300px; padding: 14px; font-weight: 800;">Close Window</button>
@@ -1041,7 +1039,7 @@ function selectHeroSession(sessionCode, regionName, localTime) {
   // Dynamically tie action intent back to the CTA with ownership language
   const heroCTA = document.getElementById('heroCTA');
   if (heroCTA) {
-    heroCTA.innerHTML = `Save My ${regionName} Seat &rarr;`;
+    heroCTA.innerHTML = `Register My ${regionName} Seat &rarr;`;
   }
   
   // Update Selection Feedback Micro-copy
