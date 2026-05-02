@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AWS PRM Deadline: Measure Attribution & Keep Funding | SaaSNova × Workspan</title>
+<title>AWS PRM: How to Fix Attribution, Protect Funding, and Pass the July 31 Compliance Mandate</title>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-185EJ40PT4"></script>
@@ -64,54 +64,54 @@ body {
   z-index: 300;
 }
 
-/* URGENCY BANNER (Red BG, Yellow Highlight) */
+/* FIXED: Top Banner - Further compressed vertical padding */
 .urgency-banner {
-  background: #E11D48;
-  color: var(--white);
+  background: #7A0000;
+  color: #FFFFFF;
   display: flex; align-items: center; justify-content: center;
-  padding: 12px 20px; text-align: center;
-  font-size: 0.95rem; font-weight: 500; letter-spacing: 0.02em;
+  padding: 6px 16px; /* Reduced to gain vertical space */
+  text-align: center;
+  font-size: 0.85rem; font-weight: 500; letter-spacing: 0.02em;
 }
 .urgency-banner .text-yellow {
-  color: #FDE047; font-weight: 800; margin-right: 6px;
+  color: #FDE047; font-weight: 900; margin-right: 6px; letter-spacing: 0.04em;
 }
 
-/* BASE NAVIGATION (Always visible on load) */
+/* BASE NAVIGATION */
 .nav {
   position: relative; 
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 6%; height: 80px; width: 100%; max-width: none;
+  padding: 0 6%; height: 72px; width: 100%; max-width: none;
   background: var(--white);
   border-bottom: 1px solid rgba(0,0,0,0.06);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* NAV SCROLLED STATE (FLOATING PILL) */
+/* NAV SCROLLED STATE */
 .nav.scrolled {
   position: fixed;
   top: 16px; left: 50%; transform: translateX(-50%);
-  width: 96%; max-width: 1200px; height: auto; min-height: 72px;
+  width: 96%; max-width: 1200px; height: auto; min-height: 64px;
   background: rgba(255,255,255,0.95);
   backdrop-filter: blur(16px);
   border-radius: 100px;
   box-shadow: 0 16px 40px rgba(0,0,0,0.08);
   border: 1px solid rgba(0,0,0,0.05);
-  padding: 10px 16px 10px 32px;
+  padding: 8px 16px 8px 32px;
   z-index: 500;
 }
 
 .nav-logo-wrap { display: flex; align-items: center; gap: 24px; flex-wrap: nowrap; }
 .nav-logo { display: flex; align-items: center; text-decoration: none; font-weight: 900; font-size: 1.25rem; letter-spacing: -0.04em; }
 
-/* ENHANCED LOGOS (Larger, better scaling) */
-.nav-logo.saasnova img { height: 52px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
-.nav-logo.workspan img { height: 60px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
+.nav-logo.saasnova img { height: 44px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
+.nav-logo.workspan img { height: 50px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
 
-.nav.scrolled .nav-logo.saasnova img { height: 40px; }
-.nav.scrolled .nav-logo.workspan img { height: 46px; }
+.nav.scrolled .nav-logo.saasnova img { height: 36px; }
+.nav.scrolled .nav-logo.workspan img { height: 42px; }
 
-.nav-divider { width: 1px; height: 32px; background: var(--border); transition: all 0.3s; }
-.nav.scrolled .nav-divider { height: 24px; }
+.nav-divider { width: 1px; height: 28px; background: var(--border); transition: all 0.3s; }
+.nav.scrolled .nav-divider { height: 20px; }
 
 .nav-ctas { display: flex; gap: 12px; align-items: center; }
 
@@ -122,7 +122,8 @@ body {
   font-family: var(--font); font-size: 0.95rem; font-weight: 800;
   text-decoration: none; cursor: pointer; border: none;
   transition: all 0.2s ease; letter-spacing: 0.02em;
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
 }
 
 .btn-gradient {
@@ -130,14 +131,14 @@ body {
   box-shadow: 0 4px 14px rgba(0,139,248,0.3);
 }
 .btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(250,15,156,0.3); opacity: 0.95; }
-.btn-xl { padding: 18px 48px; font-size: 1.15rem; box-shadow: 0 8px 24px rgba(0,139,248,0.3); }
+.btn-xl { padding: 16px 40px; font-size: 1.1rem; box-shadow: 0 8px 24px rgba(0,139,248,0.3); }
 
-.nav-ctas .btn { padding: 12px 28px; font-size: 0.9rem; }
+.nav-ctas .btn { padding: 10px 24px; font-size: 0.85rem; }
 
 /* -------------------------------------
    LAYOUT UTILS 
 -------------------------------------- */
-section { padding: 72px 6%; } /* Reduced global section padding */
+section { padding: 72px 6%; }
 .wrap { max-width: 1140px; margin: 0 auto; }
 .center { text-align: center; }
 .text-left { text-align: left !important; }
@@ -154,9 +155,9 @@ section { padding: 72px 6%; } /* Reduced global section padding */
 .dark-mode .eyebrow { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.15); }
 
 .section-title {
-  font-size: clamp(2.2rem, 4.5vw, 3.2rem); font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900;
   line-height: 1.15; letter-spacing: -0.03em; text-wrap: balance;
-  color: var(--text); margin-bottom: 20px;
+  color: var(--text); margin-bottom: 20px; word-wrap: break-word; 
 }
 .dark-mode .section-title { color: var(--white); }
 .section-sub {
@@ -168,12 +169,12 @@ section { padding: 72px 6%; } /* Reduced global section padding */
 /* -------------------------------------
    SECTION STYLING 
 -------------------------------------- */
-/* HERO (LIGHT) */
+/* HERO STACK - High Conversion Compression */
 .hero {
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   text-align: center; 
-  padding: 160px 6% 60px; /* Reduced top padding to remove empty space */
+  padding: 148px 6% 32px; 
   background-color: var(--alt-bg);
   position: relative; overflow: hidden;
 }
@@ -181,8 +182,8 @@ section { padding: 72px 6%; } /* Reduced global section padding */
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0,0,0,0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.015) 1px, transparent 1px);
   -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
 }
@@ -193,43 +194,131 @@ section { padding: 72px 6%; } /* Reduced global section padding */
 }
 @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
 
-.hero .wrap { position: relative; z-index: 10; width: 100%; }
+.hero .wrap { position: relative; z-index: 10; width: 100%; max-width: 1000px; }
 
+/* FIXED: Pill margin compressed */
 .hero-pill {
-  display: inline-flex; align-items: center; gap: 10px;
+  display: inline-flex; align-items: center; gap: 8px;
   padding: 6px 20px; border-radius: 100px;
   background: var(--white); color: var(--text);
-  font-size: 0.75rem; font-weight: 800; letter-spacing: 0.05em;
-  margin-bottom: 24px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  font-size: 0.8rem; font-weight: 800; letter-spacing: 0.05em;
+  margin-bottom: 12px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.04);
 }
 .hero-pill .divider { color: var(--muted); font-weight: 300; margin: 0 2px; }
 .hero-pill .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); animation: pulse 2s infinite; }
 
 .hero-headline {
-  font-size: clamp(2rem, 3.6vw, 3.6rem); 
-  font-weight: 900; line-height: 1.05;
-  letter-spacing: -0.04em; max-width: 1200px;
-  margin: 0 auto 20px; color: var(--text);
+  font-size: clamp(1.6rem, 3.2vw, 2.7rem);
+  font-weight: 900; line-height: 1.1;
+  letter-spacing: -0.04em; max-width: 1000px;
+  margin: 0 auto 8px; color: var(--text);
+  word-wrap: break-word; 
+  text-wrap: balance;
 }
 .hero-headline span.gradient-highlight {
   background: linear-gradient(135deg, var(--blue), var(--pink));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* FIXED: Compressed description margin */
 .hero-sub {
-  font-size: clamp(1.05rem, 1.8vw, 1.2rem); color: var(--muted);
-  max-width: 800px; margin: 0 auto 16px; font-weight: 500; line-height: 1.6;
+  font-size: clamp(0.9rem, 1.25vw, 1.05rem); color: var(--muted);
+  max-width: 900px; margin: 0 auto 16px; font-weight: 500; line-height: 1.5; 
+  text-wrap: pretty; 
 }
 
-/* COMPACT EVENT DETAILS */
-.hero-event-details {
-  display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
-  margin: 24px 0 40px; color: var(--text); font-weight: 800; font-size: 0.95rem;
+/* FIXED: Compressed spacing around session selector */
+.session-selector-wrap {
+  margin: 0 auto 16px; 
+  max-width: 840px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  z-index: 20;
 }
-.hero-event-details span { display: flex; align-items: center; gap: 8px; background: var(--white); padding: 10px 20px; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-.hero-event-details svg { color: var(--blue); }
+.session-selector-title {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text);
+  margin-bottom: 0; background: var(--white); border: 1px solid var(--border); border-radius: 100px;
+  padding: 4px 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); margin: 0 auto 8px;
+}
+.session-selector-title svg { color: var(--blue); width: 14px; height: 14px; }
+
+.session-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+/* FIXED: Visual Weight Recalibrated (Non-selected is lighter) */
+.session-card {
+  background: var(--white);
+  border: 1px solid #E2E8F0; 
+  border-radius: 12px; 
+  padding: 12px 16px; 
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+.session-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  transform: translateY(-2px);
+}
+.session-card.selected {
+  border-color: var(--blue);
+  background: #F4FAFF;
+  box-shadow: 0 0 0 1px var(--blue), 0 8px 24px rgba(0,139,248,0.1);
+}
+.session-card.selected::after {
+  content: '';
+  position: absolute;
+  top: -8px; right: -8px;
+  width: 24px; height: 24px;
+  background: var(--blue) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') center/14px no-repeat;
+  border-radius: 50%;
+  border: 3px solid var(--white);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* FIXED: Timezone Clarity Hierarchy (Time takes primary weight) */
+.sc-region { font-size: 0.75rem; font-weight: 600; color: #718096; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; } 
+.sc-local { font-size: 1.2rem; font-weight: 900; color: var(--blue); margin-bottom: 0; } 
+.sc-time { font-size: 0.8rem; font-weight: 500; color: var(--muted); } 
 
 .hero-actions { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+/* FIXED: Selection Feedback Loop */
+.selection-feedback {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+/* FIXED: High-Pressure Urgency Trigger under CTA */
+.cta-urgency {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #B91C1C; /* Dark red for severity */
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin-top: 12px;
+  letter-spacing: 0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
 
 /* STRUCTURAL BACKGROUNDS */
 .light-bg { background: var(--light); }
@@ -240,7 +329,7 @@ section { padding: 72px 6%; } /* Reduced global section padding */
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
 
-/* SIGNALS (Numbers) */
+/* SIGNALS */
 .stat-signal {
   background: var(--white); border: 1px solid var(--border);
   border-top: 4px solid var(--blue); border-radius: 12px;
@@ -255,7 +344,7 @@ section { padding: 72px 6%; } /* Reduced global section padding */
 .spec-title { font-size: 1.05rem; font-weight: 900; margin-bottom: 8px; color: var(--text); letter-spacing: -0.02em; line-height: 1.3; }
 .spec-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
 
-/* ICP (Who Should Attend - DARK MODE) */
+/* ICP */
 .icp-wrap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1040px; margin: 0 auto; text-align: left; }
 .icp-card { 
   background: var(--dark-surface); border: 1px solid var(--dark-border); 
@@ -271,7 +360,7 @@ section { padding: 72px 6%; } /* Reduced global section padding */
 .icp-card-title { font-size: 1.25rem; font-weight: 800; color: var(--white); margin-bottom: 12px; letter-spacing: -0.02em;}
 .icp-card-desc { font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.6; flex-grow: 1; font-weight: 400;}
 
-/* DELIVERABLES (What Gets Fixed - LIGHT MODE) */
+/* DELIVERABLES */
 .del-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1040px; margin: 0 auto; text-align: left; }
 .del-card {
   background: var(--white); border: 1px solid var(--border); border-top: 4px solid var(--blue);
@@ -289,7 +378,7 @@ section { padding: 72px 6%; } /* Reduced global section padding */
   font-size: 0.95rem; font-weight: 600; color: var(--text); line-height: 1.6; text-align: left;
 }
 
-/* HIGH-IMPACT TIMELINE (DARK MODE) */
+/* TIMELINE */
 .timeline-wrap { 
   --node-size: 54px;
   --tl-pad: 20px;
@@ -333,7 +422,7 @@ section { padding: 72px 6%; } /* Reduced global section padding */
 .tl-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 16px; color: var(--white); }
 .tl-desc { font-size: 1rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
 
-/* SPEAKERS (LIGHT) */
+/* SPEAKERS */
 .speaker-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 900px; margin: 0 auto; }
 .speaker-card {
   background: var(--white); border: 1px solid var(--border);
@@ -365,7 +454,7 @@ section { padding: 72px 6%; } /* Reduced global section padding */
 }
 .modal-overlay.open { opacity: 1; visibility: visible; }
 .modal-content {
-  background: var(--white); border-radius: 24px; width: 100%; max-width: 900px;
+  background: var(--white); border-radius: 24px; width: 100%; max-width: 1000px;
   padding: 48px; position: relative; transform: translateY(20px) scale(0.98);
   transition: all 0.3s ease; max-height: 90vh; overflow-y: auto; text-align: left;
   box-shadow: 0 24px 60px rgba(0,0,0,0.2);
@@ -380,7 +469,7 @@ section { padding: 72px 6%; } /* Reduced global section padding */
 .modal-close:hover { background: var(--border); color: var(--text); }
 
 .modal-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-.form-group { margin-bottom: 20px; }
+.form-group { margin-bottom: 20px; max-width: 100%; }
 .form-label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text); margin-bottom: 8px; letter-spacing: 0.05em; }
 .form-control, .form-select {
   width: 100%; padding: 12px 16px; border-radius: 10px;
@@ -388,9 +477,14 @@ section { padding: 72px 6%; } /* Reduced global section padding */
   font-family: var(--font); font-size: 0.95rem; color: var(--text);
   transition: all 0.2s;
 }
+.form-select { 
+  appearance: none; 
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%234A5568%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); 
+  background-repeat: no-repeat; background-position: right 16px top 50%; background-size: 12px auto; 
+  white-space: normal; text-overflow: ellipsis; max-width: 100%;
+}
 .form-control:focus, .form-select:focus { outline: none; border-color: var(--violet); box-shadow: 0 0 0 4px rgba(139,92,246,0.1); }
-.form-select { appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%234A5568%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right 16px top 50%; background-size: 12px auto; }
-.form-error { display: none; background: #FFF5F5; color: #C53030; padding: 12px 16px; border-radius: 10px; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; border: 1px solid #FEB2B2; }
+.form-error { display: none; background: #FFF5F5; color: #C53030; padding: 12px 16px; border-radius: 10px; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; border: 1px solid #FEB2B2; word-wrap: break-word;}
 
 /* FOOTER */
 footer { background: var(--white); padding: 80px 6% 40px; text-align: left; border-top: 1px solid var(--border); }
@@ -416,47 +510,40 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
 @media (max-width: 768px) {
   .modal-layout { grid-template-columns: 1fr; gap: 40px; }
   .modal-content { padding: 32px 24px; }
-  .nav-ctas .btn { padding: 10px 16px; font-size: 0.85rem; }
+  .nav-ctas .btn { padding: 8px 14px; font-size: 0.8rem; }
 }
 
 @media (max-width: 640px) {
   section { padding: 60px 5%; } 
-  
-  /* Make the banner a bit more compact on mobile */
-  .urgency-banner { padding: 10px 12px; font-size: 0.85rem; }
-
-  /* Increased mobile hero padding to clear the wrapping urgency banner */
-  .hero { padding: 190px 5% 50px; } 
+  .urgency-banner { padding: 8px 12px; font-size: 0.8rem; }
+  .hero { padding: 130px 5% 32px; } 
 
   .nav { justify-content: space-between; padding: 0 4%; }
   .nav.scrolled { 
-    width: 95%; padding: 12px 14px; border-radius: 40px; 
-    min-height: 54px; justify-content: space-between; top: 10px;
+    width: 95%; padding: 10px 12px; border-radius: 40px; 
+    min-height: 50px; justify-content: space-between; top: 10px;
   }
   
-  /* Clean Up Spacing & Restore Logo Size with Proper Proportions */
-  .nav-logo-wrap { gap: 14px; justify-content: flex-start; width: auto; }
-  .nav-logo.saasnova img { height: 34px !important; }
-  .nav-logo.workspan img { height: 40px !important; }
+  .nav-logo-wrap { gap: 12px; justify-content: flex-start; width: auto; }
+  .nav-logo.saasnova img { height: 32px !important; }
+  .nav-logo.workspan img { height: 38px !important; }
   .nav-divider { display: none; }
   
-  /* Ensure mobile users can register from the nav bar! */
   .nav-ctas { display: flex !important; } 
-  .nav-ctas .btn { padding: 8px 14px; font-size: 0.8rem; }
+  .nav-ctas .btn { padding: 6px 12px; font-size: 0.75rem; }
   
   .hero-actions { width: 100%; }
   .hero-actions .btn { width: 100%; }
-  .section-title { font-size: clamp(1.8rem, 8vw, 2.2rem); }
+  .section-title { font-size: clamp(1.5rem, 7vw, 2rem); }
+  .session-cards { grid-template-columns: 1fr; gap: 10px; }
 }
 
-/* Extra Small Devices (e.g. iPhone SE - 375px) */
 @media (max-width: 380px) {
-  .hero { padding: 210px 5% 50px; } /* Banner wraps to 3 lines here, need more clearance */
-  .nav { padding: 0 3%; } /* Give more horizontal space for bigger logos */
-  .nav-logo-wrap { gap: 10px; }
-  .nav-logo.saasnova img { height: 30px !important; }
-  .nav-logo.workspan img { height: 35px !important; }
-  .nav-ctas .btn { padding: 8px 10px; font-size: 0.75rem; }
+  .hero { padding: 140px 5% 32px; } 
+  .nav { padding: 0 3%; } 
+  .nav-logo-wrap { gap: 8px; }
+  .nav-logo.saasnova img { height: 28px !important; }
+  .nav-logo.workspan img { height: 32px !important; }
 }
 
 @media (max-width: 480px) {
@@ -470,12 +557,10 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
 <body>
 
 <div class="header-container">
-  <!-- 1. URGENCY BANNER (Red BG, Yellow Highlight, Explicit PRM Messaging) -->
   <div class="urgency-banner" id="topBanner">
-    <span>🚨 <span class="text-yellow">JULY 31 DEADLINE: AWS PRM Enforcement.</span> Join the webinar to fix your co-sell attribution.</span>
+    <span>🚨 <span class="text-yellow">JULY 31 DEADLINE:</span> AWS PRM Enforcement. Join the webinar to fix your co-sell attribution.</span>
   </div>
 
-  <!-- 2. DYNAMIC NAV (Enterprise Look - Logos & Register Only) -->
   <nav class="nav" id="mainNav">
     <div class="nav-logo-wrap">
       <a href="#" class="nav-logo saasnova">
@@ -489,13 +574,12 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
       </a>
     </div>
     <div class="nav-ctas">
-      <button onclick="openModal()" class="btn btn-gradient">Register Now &rarr;</button>
+      <button onclick="openModalAndMapSession()" class="btn btn-gradient">Register Now &rarr;</button>
     </div>
   </nav>
 </div>
 
 
-<!-- [ LIGHT SECTION ] HERO (Restored High-Urgency Threat Headline) -->
 <section class="hero">
   <div class="hero-grid-bg"></div>
   <div class="hero-glow-core"></div>
@@ -509,30 +593,54 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
     </div>
 
     <h1 class="hero-headline">
-      If AWS cannot track your partner-sourced revenue,<br>
-      <span class="gradient-highlight">you lose funding priority.</span>
+      AWS PRM: How to Fix Attribution, Protect Funding, and <span class="gradient-highlight">Pass the July 31 Compliance Mandate</span>
     </h1>
     <p class="hero-sub">
-      Most ISVs fail AWS funding cycles due to missing PRM attribution. We are showing you how to map resource tagging and fix your PRM visibility and co-sell tracking frameworks before the July 31st migration deadline.
+      Most ISVs fail AWS funding cycles due to missing PRM attribution. We are showing you how to map resource tagging and fix your PRM visibility and co-sell tracking frameworks before the deadline.
     </p>
     
-    <div class="hero-event-details">
-      <span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-        May 20, 2026
-      </span>
-      <span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        10:00 AM PST (NA) • 9:00 PM PST (APJ)
-      </span>
-      <span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path></svg>
-        English
-      </span>
+    <div class="session-selector-wrap">
+      <div class="session-selector-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        Live Event Date: May 20, 2026
+      </div>
+      
+      <div class="session-cards" id="heroSessionCards">
+        <!-- NA Session (Default) -->
+        <div class="session-card selected" data-session="na" onclick="selectHeroSession('na', 'NA', '1:00 PM EST')">
+          <div class="sc-region">NA Region</div>
+          <div class="sc-local">1:00 PM EST</div>
+          <div class="sc-time">PST: 10:00 AM</div>
+        </div>
+        
+        <!-- EU Session -->
+        <div class="session-card" data-session="eu" onclick="selectHeroSession('eu', 'EU', '2:00 PM UK')">
+          <div class="sc-region">EU Region</div>
+          <div class="sc-local">2:00 PM UK</div>
+          <div class="sc-time">PST: 6:00 AM</div>
+        </div>
+        
+        <!-- APJ Session -->
+        <div class="session-card" data-session="apj" onclick="selectHeroSession('apj', 'APJ', '2:00 PM AEST')">
+          <div class="sc-region">APJ Region</div>
+          <div class="sc-local">2:00 PM AEST</div>
+          <div class="sc-time">PST: 9:00 PM</div>
+        </div>
+      </div>
     </div>
 
     <div class="hero-actions">
-      <button onclick="openModal()" class="btn btn-gradient btn-xl">Register Now &rarr;</button>
+      <!-- Selection feedback text directly above the button -->
+      <div id="selectionFeedback" class="selection-feedback">You selected: NA Session (1:00 PM EST)</div>
+      
+      <!-- Ownership CTA language -->
+      <button id="heroCTA" onclick="openModalAndMapSession()" class="btn btn-gradient btn-xl">Save My NA Seat &rarr;</button>
+      
+      <!-- High urgency conversion reinforcement block -->
+      <div class="cta-urgency">
+        <span style="font-size: 1.1em; margin-right: 2px;">⚠️</span>
+        July 31 deadline: non-compliance risks funding access
+      </div>
     </div>
   </div>
 </section>
@@ -566,7 +674,7 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
   </div>
 </section>
 
-<!-- [ DARK SECTION ] WHO SHOULD ATTEND (Targeted Tech/GTM Language) -->
+<!-- [ DARK SECTION ] WHO SHOULD ATTEND -->
 <section class="dark-section dark-mode">
   <div class="wrap center">
     <div class="eyebrow">Who Should Attend</div>
@@ -640,7 +748,7 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
     </div>
     
     <div style="margin-top: 40px;">
-      <button onclick="openModal()" class="btn btn-gradient">Register Now &rarr;</button>
+      <button onclick="openModalAndMapSession()" class="btn btn-gradient">Register Now &rarr;</button>
     </div>
   </div>
 </section>
@@ -695,7 +803,7 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
     </div>
     
     <div style="margin-top: 48px;">
-      <button onclick="openModal()" class="btn" style="background: var(--white); color: var(--text);">Register Now &rarr;</button>
+      <button onclick="openModalAndMapSession()" class="btn" style="background: var(--white); color: var(--text);">Register Now &rarr;</button>
     </div>
   </div>
 </section>
@@ -717,7 +825,7 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
       </div>
       <div class="speaker-card">
         <img src="amit-dp.jpeg" alt="Amit Sinha" class="speaker-img" onerror="this.outerHTML='<div class=\'speaker-img\' style=\'display:flex;align-items:center;justify-content:center;background:#F8FAFC;font-weight:900;font-size:2rem;color:#4A5568;\'>AS</div>'">
-        <h3 class="spec-title" style="margin-bottom: 4px; font-size: 1.4rem;">Amit Sinha </h3>
+        <h3 class="spec-title" style="margin-bottom: 4px; font-size: 1.4rem;">Amit Sinha</h3>
         <p style="color: var(--muted); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 16px; letter-spacing: 0.05em;">President, Workspan</p>
         <span class="metric-badge violet">Orchestrating co-sell automation for global enterprise ISVs</span>
         <p class="spec-desc">Architected the enterprise infrastructure currently helping top-tier ISVs track, measure, and maximize their marketplace revenue potential.</p>
@@ -732,7 +840,7 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
     <h2 class="section-title">Fix your AWS visibility before the deadline closes.</h2>
     <p class="section-sub">After July 31, visibility resets for non-compliant partners. Miss this &rarr; lose co-sell priority for the next cycle.</p>
     <div style="display:flex; justify-content:center; flex-direction: column; align-items: center; gap: 16px;">
-      <button onclick="openModal()" class="btn" style="background:var(--white); color:var(--text); padding:18px 48px; font-size:1.15rem; box-shadow: 0 12px 30px rgba(0,0,0,0.15);">Register Now &rarr;</button>
+      <button onclick="openModalAndMapSession()" class="btn" style="background:var(--white); color:var(--text); padding:18px 48px; font-size:1.15rem; box-shadow: 0 12px 30px rgba(0,0,0,0.15);">Register Now &rarr;</button>
     </div>
   </div>
 </section>
@@ -741,7 +849,6 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
 <footer>
   <div class="wrap">
     <div class="footer-grid text-left">
-      <!-- SaaSNova Col -->
       <div>
         <a href="https://www.saasnova.ai" target="_blank" style="display: block; margin-bottom: 24px;">
           <img src="saasnova-logo.png" alt="SaaSNova" style="height: 56px; width: auto; object-fit: contain;" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.6rem; color:var(--blue); letter-spacing:-0.04em;\'>SaaSNova</span>'">
@@ -750,7 +857,6 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
         <a href="mailto:marketing@saasnova.ai" style="display: inline-block; margin-top: 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); text-decoration: none;">marketing@saasnova.ai</a>
       </div>
 
-      <!-- Workspan Col -->
       <div>
         <a href="https://www.workspan.com" target="_blank" style="display: block; margin-bottom: 24px;">
           <img src="workspan-logo.png" alt="Workspan" style="height: 56px; width: auto; object-fit: contain;" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.6rem; color:var(--violet); letter-spacing:-0.04em;\'>Workspan</span>'">
@@ -759,7 +865,6 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
         <a href="mailto:marketing@workspan.com" style="display: inline-block; margin-top: 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); text-decoration: none;">marketing@workspan.com</a>
       </div>
       
-      <!-- Quick Links Col -->
       <div>
         <h4 style="font-weight: 800; color: var(--text); margin-bottom: 24px; font-size: 1.05rem;">Quick Links</h4>
         <a href="https://www.saasnova.ai" target="_blank" style="display: block; color: var(--muted); margin-bottom: 12px; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s;" onmouseover="this.style.color='var(--blue)'" onmouseout="this.style.color='var(--muted)'">SaaSNova</a>
@@ -790,6 +895,7 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
       <!-- Event Information Side -->
       <div class="modal-info">
         <h4 style="font-weight: 900; font-size: 1.15rem; color: var(--text); margin-bottom: 12px;">Event Details</h4>
+        <p style="font-weight: 800; color: var(--blue); margin-bottom: 12px; font-size: 1.05rem; line-height: 1.4;">AWS PRM: How to Fix Attribution, Protect Funding, and Pass the July 31 Compliance Mandate</p>
         <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 24px; line-height: 1.6;">Join this live session to learn about the latest updates in AWS Partner Central and how Partner Revenue Measurement (PRM) helps you gain attribution, unlock partner funding, and accelerate co-sell opportunities. With the July 31 deadline fast approaching, discover how to ensure a smooth transition and simplify PRM setup through automation.</p>
 
         <h4 style="font-weight: 900; font-size: 1.15rem; color: var(--text); margin-bottom: 12px;">Agenda</h4>
@@ -817,13 +923,14 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
         <div class="form-error" id="formError">Please fill out all required fields.</div>
 
         <form onsubmit="handleSubmit(event)">
-          <!-- SESSION DROPDOWN -->
+          <!-- FIXED: Dropdown matches strict selection format -->
           <div class="form-group">
             <label class="form-label">Select Session <span style="color:var(--pink);">*</span></label>
             <select id="sessionTime" class="form-select">
-              <option value="" disabled selected>Choose your session...</option>
-              <option value="na">Session 1: May 20 • 10:00 AM PST (NA / EMEA)</option>
-              <option value="apj">Session 2: May 20 • 9:00 PM PST (APJ / IST)</option>
+              <option value="" disabled>Choose your session...</option>
+              <option value="na">NA Session — 1:00 PM EST (10:00 AM PST)</option>
+              <option value="eu">EU Session — 2:00 PM UK (6:00 AM PST)</option>
+              <option value="apj">APJ Session — 2:00 PM AEST (9:00 PM PST)</option>
             </select>
           </div>
 
@@ -848,32 +955,35 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
             <input type="text" id="company" class="form-control" placeholder="Acme Corp">
           </div>
           
-          <button type="submit" class="btn btn-gradient" style="width: 100%; padding: 14px; font-size: 1rem;">Reserve My Seat</button>
+          <button type="submit" class="btn btn-gradient" style="width: 100%; padding: 14px; font-size: 1rem;">Submit Application</button>
           <p style="text-align: center; font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-top: 16px;">No spam. Data is used exclusively for event communications.</p>
         </form>
       </div>
     </div>
 
-    <!-- Success View (Hidden initially) -->
+    <!-- FIXED: Curated Event Success View -->
     <div id="successView" style="display: none; text-align: center; padding: 20px 0;">
       <div style="width: 56px; height: 56px; background: rgba(72,187,120,0.15); color: #48BB78; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
       </div>
-      <h3 class="section-title" style="font-size: 1.8rem; margin-bottom: 12px;">Registration Confirmed.</h3>
-      <p style="color: var(--muted); margin-bottom: 24px; font-size: 0.95rem; line-height: 1.6;">Check your inbox for calendar invites. We will send a reminder link 24 hours before we go live.</p>
-      <button onclick="closeModal()" class="btn" style="background: var(--light); color: var(--text); border: 1px solid var(--border); width: 100%; max-width: 300px; padding: 14px;">Close Window</button>
+      <h3 class="section-title" style="font-size: 1.8rem; margin-bottom: 12px;">Application Received</h3>
+      <p style="color: var(--muted); margin-bottom: 32px; font-size: 1.05rem; line-height: 1.6;">
+        We review registrations to ensure session relevance.<br>
+        If approved, you’ll receive your access link via email.
+      </p>
+      
+      <button onclick="closeModal()" class="btn" style="background: var(--light); color: var(--text); border: 1px solid var(--border); width: 100%; max-width: 300px; padding: 14px; font-weight: 800;">Close Window</button>
     </div>
 
   </div>
 </div>
 
 <script>
-// Dynamic Morphing Nav (Floating behavior below banner)
+// Dynamic Morphing Nav
 const mainNav = document.getElementById('mainNav');
 const topBanner = document.getElementById('topBanner');
 
 window.addEventListener('scroll', () => {
-  // Add scrolled state after passing the banner height
   const bannerHeight = topBanner ? topBanner.offsetHeight : 40;
   if (window.scrollY > bannerHeight) {
     mainNav.classList.add('scrolled');
@@ -882,13 +992,12 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
-// Interactive Timeline Scroll & Activation Logic
+// Interactive Timeline
 document.addEventListener('DOMContentLoaded', () => {
   const tlItems = document.querySelectorAll('.tl-item');
   const tlProgress = document.getElementById('tl-progress');
   const timelineWrap = document.getElementById('timeline');
 
-  // Intersection Observer to trigger '.active' state on timeline items
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -899,14 +1008,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   tlItems.forEach(item => observer.observe(item));
 
-  // Scroll listener to paint the timeline progress line
   window.addEventListener('scroll', () => {
     if (!timelineWrap || !tlProgress) return;
     const rect = timelineWrap.getBoundingClientRect();
     const windowHeight = window.innerHeight;
     
     let progress = 0;
-    // Only calculate progress if the top of the timeline has entered the middle of the screen
     if (rect.top < windowHeight / 2) {
       const totalHeight = rect.height;
       const scrolled = (windowHeight / 2) - rect.top;
@@ -916,17 +1023,53 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 });
 
-// Modal Logic
+// Global State mapped to dynamic CTA feedback loop + Micro-copy validation
+let currentHeroSession = 'na'; 
+
+function selectHeroSession(sessionCode, regionName, localTime) {
+  currentHeroSession = sessionCode;
+  
+  // Update visually
+  document.querySelectorAll('.session-card').forEach(card => {
+    if(card.getAttribute('data-session') === sessionCode) {
+      card.classList.add('selected');
+    } else {
+      card.classList.remove('selected');
+    }
+  });
+
+  // Dynamically tie action intent back to the CTA with ownership language
+  const heroCTA = document.getElementById('heroCTA');
+  if (heroCTA) {
+    heroCTA.innerHTML = `Save My ${regionName} Seat &rarr;`;
+  }
+  
+  // Update Selection Feedback Micro-copy
+  const feedback = document.getElementById('selectionFeedback');
+  if (feedback) {
+    feedback.innerHTML = `You selected: ${regionName} Session (${localTime})`;
+  }
+}
+
+// Modal Logic wrapper that pulls selected hero session
+function openModalAndMapSession() {
+  openModal();
+  
+  // Set the dropdown to match the user's hero selection
+  const selectElement = document.getElementById('sessionTime');
+  if(selectElement) {
+    selectElement.value = currentHeroSession;
+  }
+}
+
 function openModal() {
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
   
-  // Reset
   document.getElementById('modalContentInner').style.display = 'grid';
   document.getElementById('successView').style.display = 'none';
   document.getElementById('formError').style.display = 'none';
   
-  // Trigger responsive check for modal display
   if (window.innerWidth <= 768) {
     document.getElementById('modalContentInner').style.display = 'block';
   }
@@ -975,7 +1118,7 @@ function handleSubmit(e) {
     return;
   }
 
-  // Simulate success
+  // FIXED: No instant access link generation logic here. Leads are held for manual review.
   document.getElementById('modalContentInner').style.display = 'none';
   document.getElementById('successView').style.display = 'block';
 }
