@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AWS PRM: How to Fix Attribution, Protect Funding, and Pass the July 31 Compliance Mandate</title>
+<title>AWS partner revenue measurement</title>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-185EJ40PT4"></script>
@@ -134,7 +134,6 @@ body {
 .btn-xl { padding: 16px 40px; font-size: 1.1rem; box-shadow: 0 8px 24px rgba(0,139,248,0.3); }
 
 .nav-ctas .btn { padding: 10px 24px; font-size: 0.85rem; }
-.btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
 
 /* -------------------------------------
    LAYOUT UTILS 
@@ -594,10 +593,10 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
     </div>
 
     <h1 class="hero-headline">
-      AWS PRM: How to Fix Attribution, Protect Funding, and <span class="gradient-highlight">Pass the July 31 Compliance Mandate</span>
+      AWS partner revenue measurement
     </h1>
-    <p class="hero-sub">
-      Most ISVs fail AWS funding cycles due to missing PRM attribution. We are showing you how to map resource tagging and fix your PRM visibility and co-sell tracking frameworks before the deadline.
+    <p class="hero-sub" style="font-size: clamp(1.1rem, 1.5vw, 1.25rem); font-weight: 600; color: var(--text);">
+      How to fix attribution, protect funding and pass the July 31st deadline
     </p>
     
     <div class="session-selector-wrap">
@@ -894,7 +893,7 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
       <!-- Event Information Side -->
       <div class="modal-info">
         <h4 style="font-weight: 900; font-size: 1.15rem; color: var(--text); margin-bottom: 12px;">Event Details</h4>
-        <p style="font-weight: 800; color: var(--blue); margin-bottom: 12px; font-size: 1.05rem; line-height: 1.4;">AWS PRM: How to Fix Attribution, Protect Funding, and Pass the July 31 Compliance Mandate</p>
+        <p style="font-weight: 800; color: var(--blue); margin-bottom: 12px; font-size: 1.05rem; line-height: 1.4;">AWS partner revenue measurement: How to fix attribution, protect funding and pass the July 31st deadline</p>
         <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 24px; line-height: 1.6;">Join this live session to learn about the latest updates in AWS Partner Central and how Partner Revenue Measurement (PRM) helps you gain attribution, unlock partner funding, and accelerate co-sell opportunities. With the July 31 deadline fast approaching, discover how to ensure a smooth transition and simplify PRM setup through automation.</p>
 
         <h4 style="font-weight: 900; font-size: 1.15rem; color: var(--text); margin-bottom: 12px;">Agenda</h4>
@@ -921,8 +920,8 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
 
         <div class="form-error" id="formError">Please fill out all required fields.</div>
 
-        <form id="registrationForm" onsubmit="handleSubmit(event)">
-          <!-- Dropdown mapped to HubSpot 'select_session' internal value -->
+        <form onsubmit="handleSubmit(event)">
+          <!-- FIXED: Dropdown matches strict selection format -->
           <div class="form-group">
             <label class="form-label">Select Session <span style="color:var(--pink);">*</span></label>
             <select id="sessionTime" class="form-select">
@@ -954,13 +953,13 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
             <input type="text" id="company" class="form-control" placeholder="Acme Corp">
           </div>
           
-          <button type="submit" id="submitBtn" class="btn btn-gradient" style="width: 100%; padding: 14px; font-size: 1rem;">Submit Application</button>
+          <button type="submit" class="btn btn-gradient" style="width: 100%; padding: 14px; font-size: 1rem;">Submit Application</button>
           <p style="text-align: center; font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-top: 16px;">No spam. Data is used exclusively for event communications.</p>
         </form>
       </div>
     </div>
 
-    <!-- Curated Event Success View -->
+    <!-- FIXED: Curated Event Success View -->
     <div id="successView" style="display: none; text-align: center; padding: 20px 0;">
       <div style="width: 56px; height: 56px; background: rgba(72,187,120,0.15); color: #48BB78; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
@@ -1068,7 +1067,6 @@ function openModal() {
   document.getElementById('modalContentInner').style.display = 'grid';
   document.getElementById('successView').style.display = 'none';
   document.getElementById('formError').style.display = 'none';
-  document.getElementById('registrationForm').reset();
   
   if (window.innerWidth <= 768) {
     document.getElementById('modalContentInner').style.display = 'block';
@@ -1095,22 +1093,17 @@ function handleOverlayClick(e) {
   if (e.target === document.getElementById('modalOverlay')) closeModal();
 }
 
-// Custom HubSpot Integration Handler
-async function handleSubmit(e) {
+function handleSubmit(e) {
   e.preventDefault();
-  
   const errorBox = document.getElementById('formError');
-  const submitBtn = document.getElementById('submitBtn');
   errorBox.style.display = 'none';
 
-  // Get field values
   const session = document.getElementById('sessionTime').value;
   const fn = document.getElementById('firstName').value.trim();
   const ln = document.getElementById('lastName').value.trim();
   const em = document.getElementById('email').value.trim();
   const co = document.getElementById('company').value.trim();
 
-  // Basic Validation
   if (!session || !fn || !ln || !em || !co) {
     errorBox.textContent = 'All fields, including session selection, are required.';
     errorBox.style.display = 'block';
@@ -1123,62 +1116,9 @@ async function handleSubmit(e) {
     return;
   }
 
-  // HubSpot Forms API Integration Details
-  const portalId = "245317385";
-  const formId = "13dd76e7-70b7-444d-981f-1375339be7c6";
-  const url = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`;
-
-  // Map to the internal names you specified
-  const data = {
-    fields: [
-      { name: "select_session", value: session },
-      { name: "firstname", value: fn },
-      { name: "lastname", value: ln },
-      { name: "email", value: em },
-      { name: "company", value: co }
-    ],
-    context: {
-      pageUri: window.location.href,
-      pageName: document.title
-    }
-  };
-
-  try {
-    // UI Loading State
-    const originalText = submitBtn.innerText;
-    submitBtn.innerText = "Submitting...";
-    submitBtn.disabled = true;
-
-    // Send payload to HubSpot
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-
-    if (response.ok) {
-      // Success View Trigger
-      document.getElementById('modalContentInner').style.display = 'none';
-      document.getElementById('successView').style.display = 'block';
-    } else {
-      // API Failure handling
-      const errorData = await response.json();
-      console.error("HubSpot Submission Error:", errorData);
-      errorBox.textContent = 'Submission failed. Please check your information and try again.';
-      errorBox.style.display = 'block';
-    }
-  } catch (err) {
-    // Network Error handling
-    console.error("Network Error during submission:", err);
-    errorBox.textContent = 'A network error occurred. Please try again.';
-    errorBox.style.display = 'block';
-  } finally {
-    // Reset UI State
-    submitBtn.innerText = "Submit Application";
-    submitBtn.disabled = false;
-  }
+  // FIXED: No instant access link generation logic here. Leads are held for manual review.
+  document.getElementById('modalContentInner').style.display = 'none';
+  document.getElementById('successView').style.display = 'block';
 }
 </script>
 
