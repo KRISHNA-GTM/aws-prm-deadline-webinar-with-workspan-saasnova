@@ -104,11 +104,11 @@ body {
 .nav-logo-wrap { display: flex; align-items: center; gap: 24px; flex-wrap: nowrap; }
 .nav-logo { display: flex; align-items: center; text-decoration: none; font-weight: 900; font-size: 1.25rem; letter-spacing: -0.04em; }
 
-/* VISUALLY BALANCED LOGO HEIGHTS */
-.nav-logo.saasnova img { height: 38px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
+.nav-logo.saasnova img { height: 44px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
+/* FIXED: Scaled down horizontal logo size for proportion */
 .nav-logo.workspan img { height: 30px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
 
-.nav.scrolled .nav-logo.saasnova img { height: 32px; }
+.nav.scrolled .nav-logo.saasnova img { height: 36px; }
 .nav.scrolled .nav-logo.workspan img { height: 24px; }
 
 .nav-divider { width: 1px; height: 28px; background: var(--border); transition: all 0.3s; }
@@ -527,11 +527,8 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
   }
   
   .nav-logo-wrap { gap: 12px; justify-content: flex-start; width: auto; }
-  
-  /* FIXED: Adjusted mobile specific heights for balance */
-  .nav-logo.saasnova img { height: 30px !important; }
-  .nav-logo.workspan img { height: 24px !important; }
-  
+  .nav-logo.saasnova img { height: 32px !important; }
+  .nav-logo.workspan img { height: 22px !important; } /* FIXED: Reduced mobile scale */
   .nav-divider { display: none; }
   
   .nav-ctas { display: flex !important; } 
@@ -547,10 +544,8 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
   .hero { padding: 140px 5% 32px; } 
   .nav { padding: 0 3%; } 
   .nav-logo-wrap { gap: 8px; }
-  
-  /* FIXED: Adjusted smallest mobile specific heights for balance */
-  .nav-logo.saasnova img { height: 26px !important; }
-  .nav-logo.workspan img { height: 20px !important; }
+  .nav-logo.saasnova img { height: 28px !important; }
+  .nav-logo.workspan img { height: 20px !important; } /* FIXED: Reduced small mobile scale */
 }
 
 @media (max-width: 480px) {
@@ -853,7 +848,7 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
     <div class="footer-grid text-left">
       <div>
         <a href="https://www.saasnova.ai" target="_blank" style="display: block; margin-bottom: 24px;">
-          <img src="saasnova-logo.png" alt="SaaSNova" style="height: 48px; width: auto; object-fit: contain;" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.6rem; color:var(--blue); letter-spacing:-0.04em;\'>SaaSNova</span>'">
+          <img src="saasnova-logo.png" alt="SaaSNova" style="height: 56px; width: auto; object-fit: contain;" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.6rem; color:var(--blue); letter-spacing:-0.04em;\'>SaaSNova</span>'">
         </a>
         <p class="spec-desc" style="color: var(--text); font-weight: 500;">Strategic GTM leadership and pipeline acceleration for cloud-native ISVs.</p>
         <a href="mailto:marketing@saasnova.ai" style="display: inline-block; margin-top: 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); text-decoration: none;">marketing@saasnova.ai</a>
@@ -861,7 +856,8 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
 
       <div>
         <a href="https://www.workspan.com" target="_blank" style="display: block; margin-bottom: 24px;">
-          <img src="workspan-logo.png" alt="Workspan" style="height: 38px; width: auto; object-fit: contain;" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.6rem; color:var(--violet); letter-spacing:-0.04em;\'>Workspan</span>'">
+          <!-- FIXED: Also downscaled footer logo proportionally -->
+          <img src="workspan-logo.png" alt="Workspan" style="height: 36px; width: auto; object-fit: contain;" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.6rem; color:var(--violet); letter-spacing:-0.04em;\'>Workspan</span>'">
         </a>
         <p class="spec-desc" style="color: var(--text); font-weight: 500;">Co-sell infrastructure and CRM integration for multi-cloud marketplaces.</p>
         <a href="mailto:marketing@workspan.com" style="display: inline-block; margin-top: 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); text-decoration: none;">marketing@workspan.com</a>
@@ -930,9 +926,9 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
             <label class="form-label">Select Session <span style="color:var(--pink);">*</span></label>
             <select id="sessionTime" class="form-select">
               <option value="" disabled>Choose your session...</option>
-              <option value="na">NA Session — 1:00 PM EST (10:00 AM PST)</option>
-              <option value="eu">EU Session — 2:00 PM UK (6:00 AM PST)</option>
-              <option value="apj">APJ Session — 2:00 PM AEST (9:00 PM PST)</option>
+              <option value="NA Session — 1:00 PM EST (10:00 AM PST)">NA Session — 1:00 PM EST (10:00 AM PST)</option>
+              <option value="EU Session — 2:00 PM UK (6:00 AM PST)">EU Session — 2:00 PM UK (6:00 AM PST)</option>
+              <option value="APJ Session — 2:00 PM AEST (9:00 PM PST)">APJ Session — 2:00 PM AEST (9:00 PM PST)</option>
             </select>
           </div>
 
@@ -948,8 +944,8 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
           </div>
           
           <div class="form-group">
-            <label class="form-label">Work Email <span style="color:var(--pink);">*</span></label>
-            <input type="email" id="email" class="form-control" placeholder="jane@company.com">
+            <label class="form-label">Email <span style="color:var(--pink);">*</span></label>
+            <input type="email" id="email" class="form-control" placeholder="jane@example.com">
           </div>
           
           <div class="form-group" style="margin-bottom: 24px;">
@@ -958,7 +954,7 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
           </div>
           
           <button type="submit" id="submitBtn" class="btn btn-gradient" style="width: 100%; padding: 14px; font-size: 1rem;">Submit Application</button>
-          <p style="text-align: center; font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-top: 16px;">No spam. Data is used exclusively for event communications.</p>
+          <p style="text-align: center; font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-top: 16px;">Your data will only be used for event communications.</p>
         </form>
       </div>
     </div>
@@ -1057,10 +1053,15 @@ function selectHeroSession(sessionCode, regionName, localTime) {
 function openModalAndMapSession() {
   openModal();
   
-  // Set the dropdown to match the user's hero selection
+  // Set the dropdown to match the user's hero selection with exact HubSpot CRM Values
   const selectElement = document.getElementById('sessionTime');
   if(selectElement) {
-    selectElement.value = currentHeroSession;
+    const sessionMap = {
+      'na': 'NA Session — 1:00 PM EST (10:00 AM PST)',
+      'eu': 'EU Session — 2:00 PM UK (6:00 AM PST)',
+      'apj': 'APJ Session — 2:00 PM AEST (9:00 PM PST)'
+    };
+    selectElement.value = sessionMap[currentHeroSession];
   }
 }
 
@@ -1123,7 +1124,7 @@ async function handleSubmit(e) {
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) {
-    errorBox.textContent = 'Please provide a valid work email address.';
+    errorBox.textContent = 'Please provide a valid email address.';
     errorBox.style.display = 'block';
     return;
   }
