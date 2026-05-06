@@ -104,11 +104,12 @@ body {
 .nav-logo-wrap { display: flex; align-items: center; gap: 24px; flex-wrap: nowrap; }
 .nav-logo { display: flex; align-items: center; text-decoration: none; font-weight: 900; font-size: 1.25rem; letter-spacing: -0.04em; }
 
-.nav-logo.saasnova img { height: 44px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
-.nav-logo.workspan img { height: 50px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
+/* VISUALLY BALANCED LOGO HEIGHTS */
+.nav-logo.saasnova img { height: 38px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
+.nav-logo.workspan img { height: 30px; width: auto; transition: all 0.3s; display: block; object-fit: contain; }
 
-.nav.scrolled .nav-logo.saasnova img { height: 36px; }
-.nav.scrolled .nav-logo.workspan img { height: 42px; }
+.nav.scrolled .nav-logo.saasnova img { height: 32px; }
+.nav.scrolled .nav-logo.workspan img { height: 24px; }
 
 .nav-divider { width: 1px; height: 28px; background: var(--border); transition: all 0.3s; }
 .nav.scrolled .nav-divider { height: 20px; }
@@ -125,12 +126,13 @@ body {
   white-space: normal;
   text-align: center;
 }
+.btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
 .btn-gradient {
   background: linear-gradient(135deg, var(--blue) 0%, var(--pink) 100%); color: var(--white);
   box-shadow: 0 4px 14px rgba(0,139,248,0.3);
 }
-.btn-gradient:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(250,15,156,0.3); opacity: 0.95; }
+.btn-gradient:not(:disabled):hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(250,15,156,0.3); opacity: 0.95; }
 .btn-xl { padding: 16px 40px; font-size: 1.1rem; box-shadow: 0 8px 24px rgba(0,139,248,0.3); }
 
 .nav-ctas .btn { padding: 10px 24px; font-size: 0.85rem; }
@@ -525,8 +527,11 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
   }
   
   .nav-logo-wrap { gap: 12px; justify-content: flex-start; width: auto; }
-  .nav-logo.saasnova img { height: 32px !important; }
-  .nav-logo.workspan img { height: 38px !important; }
+  
+  /* FIXED: Adjusted mobile specific heights for balance */
+  .nav-logo.saasnova img { height: 30px !important; }
+  .nav-logo.workspan img { height: 24px !important; }
+  
   .nav-divider { display: none; }
   
   .nav-ctas { display: flex !important; } 
@@ -542,8 +547,10 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
   .hero { padding: 140px 5% 32px; } 
   .nav { padding: 0 3%; } 
   .nav-logo-wrap { gap: 8px; }
-  .nav-logo.saasnova img { height: 28px !important; }
-  .nav-logo.workspan img { height: 32px !important; }
+  
+  /* FIXED: Adjusted smallest mobile specific heights for balance */
+  .nav-logo.saasnova img { height: 26px !important; }
+  .nav-logo.workspan img { height: 20px !important; }
 }
 
 @media (max-width: 480px) {
@@ -846,7 +853,7 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
     <div class="footer-grid text-left">
       <div>
         <a href="https://www.saasnova.ai" target="_blank" style="display: block; margin-bottom: 24px;">
-          <img src="saasnova-logo.png" alt="SaaSNova" style="height: 56px; width: auto; object-fit: contain;" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.6rem; color:var(--blue); letter-spacing:-0.04em;\'>SaaSNova</span>'">
+          <img src="saasnova-logo.png" alt="SaaSNova" style="height: 48px; width: auto; object-fit: contain;" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.6rem; color:var(--blue); letter-spacing:-0.04em;\'>SaaSNova</span>'">
         </a>
         <p class="spec-desc" style="color: var(--text); font-weight: 500;">Strategic GTM leadership and pipeline acceleration for cloud-native ISVs.</p>
         <a href="mailto:marketing@saasnova.ai" style="display: inline-block; margin-top: 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); text-decoration: none;">marketing@saasnova.ai</a>
@@ -854,7 +861,7 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
 
       <div>
         <a href="https://www.workspan.com" target="_blank" style="display: block; margin-bottom: 24px;">
-          <img src="workspan-logo.png" alt="Workspan" style="height: 56px; width: auto; object-fit: contain;" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.6rem; color:var(--violet); letter-spacing:-0.04em;\'>Workspan</span>'">
+          <img src="workspan-logo.png" alt="Workspan" style="height: 38px; width: auto; object-fit: contain;" onerror="this.outerHTML='<span style=\'font-weight:900; font-size:1.6rem; color:var(--violet); letter-spacing:-0.04em;\'>Workspan</span>'">
         </a>
         <p class="spec-desc" style="color: var(--text); font-weight: 500;">Co-sell infrastructure and CRM integration for multi-cloud marketplaces.</p>
         <a href="mailto:marketing@workspan.com" style="display: inline-block; margin-top: 8px; font-size: 0.9rem; font-weight: 600; color: var(--muted); text-decoration: none;">marketing@workspan.com</a>
@@ -917,7 +924,7 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
 
         <div class="form-error" id="formError">Please fill out all required fields.</div>
 
-        <form onsubmit="handleSubmit(event)">
+        <form id="registrationForm" onsubmit="handleSubmit(event)">
           <!-- FIXED: Dropdown matches strict selection format -->
           <div class="form-group">
             <label class="form-label">Select Session <span style="color:var(--pink);">*</span></label>
@@ -950,7 +957,7 @@ footer { background: var(--white); padding: 80px 6% 40px; text-align: left; bord
             <input type="text" id="company" class="form-control" placeholder="Acme Corp">
           </div>
           
-          <button type="submit" class="btn btn-gradient" style="width: 100%; padding: 14px; font-size: 1rem;">Submit Application</button>
+          <button type="submit" id="submitBtn" class="btn btn-gradient" style="width: 100%; padding: 14px; font-size: 1rem;">Submit Application</button>
           <p style="text-align: center; font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-top: 16px;">No spam. Data is used exclusively for event communications.</p>
         </form>
       </div>
@@ -1065,6 +1072,9 @@ function openModal() {
   document.getElementById('successView').style.display = 'none';
   document.getElementById('formError').style.display = 'none';
   
+  // Reset the form if previously submitted
+  document.getElementById('registrationForm').reset();
+  
   if (window.innerWidth <= 768) {
     document.getElementById('modalContentInner').style.display = 'block';
   }
@@ -1090,17 +1100,22 @@ function handleOverlayClick(e) {
   if (e.target === document.getElementById('modalOverlay')) closeModal();
 }
 
-function handleSubmit(e) {
+// CUSTOM HUBSPOT API SUBMISSION
+async function handleSubmit(e) {
   e.preventDefault();
+  
   const errorBox = document.getElementById('formError');
+  const submitBtn = document.getElementById('submitBtn');
   errorBox.style.display = 'none';
 
+  // Extract form values
   const session = document.getElementById('sessionTime').value;
   const fn = document.getElementById('firstName').value.trim();
   const ln = document.getElementById('lastName').value.trim();
   const em = document.getElementById('email').value.trim();
   const co = document.getElementById('company').value.trim();
 
+  // Basic Validation
   if (!session || !fn || !ln || !em || !co) {
     errorBox.textContent = 'All fields, including session selection, are required.';
     errorBox.style.display = 'block';
@@ -1113,9 +1128,60 @@ function handleSubmit(e) {
     return;
   }
 
-  // FIXED: No instant access link generation logic here. Leads are held for manual review.
-  document.getElementById('modalContentInner').style.display = 'none';
-  document.getElementById('successView').style.display = 'block';
+  // Update button UI while processing
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting...';
+
+  // 1. Prepare the HubSpot API Payload mapping to internal names
+  const portalId = '245317385';
+  const formId = '13dd76e7-70b7-444d-981f-1375339be7c6';
+  const url = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`;
+  
+  const data = {
+    fields: [
+      { name: "select_session", value: session },
+      { name: "firstname", value: fn },
+      { name: "lastname", value: ln },
+      { name: "email", value: em },
+      { name: "company", value: co }
+    ],
+    context: {
+      pageUri: window.location.href,
+      pageName: document.title
+    }
+  };
+
+  // 2. Transmit data to HubSpot via POST Request
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+      // 3. Show Native Success State (No Redirect)
+      document.getElementById('modalContentInner').style.display = 'none';
+      document.getElementById('successView').style.display = 'block';
+    } else {
+      // Handle HubSpot Validation or Server Errors
+      const responseData = await response.json();
+      console.error('HubSpot Error:', responseData);
+      errorBox.textContent = 'Submission failed. Please check your details and try again.';
+      errorBox.style.display = 'block';
+    }
+  } catch (error) {
+    // Handle Network Errors (e.g., ad-blockers blocking hsforms API)
+    console.error('Network Error:', error);
+    errorBox.textContent = 'A network error occurred. Please ensure ad-blockers are disabled or try again.';
+    errorBox.style.display = 'block';
+  } finally {
+    // Re-enable button state
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Application';
+  }
 }
 </script>
 
